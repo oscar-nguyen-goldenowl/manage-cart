@@ -1,17 +1,15 @@
-import {ACTION_CART} from '../actions';
+import {ACTION_CART} from '../../actions';
 
 const stateInitial = {
     // my state
-    cart: "cart"
+    cart: "cart state"
 }
 
 const CartReducer = (state = stateInitial, action) => {
-        switch(action.type){
-            case ACTION_CART: 
-                return "Cart reducer"    
+        switch(action.type){ 
             default :
                 return state
         }
 }
 
-export { CartReducer };
+export default  CartReducer ;

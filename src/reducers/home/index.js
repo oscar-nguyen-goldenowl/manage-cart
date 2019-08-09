@@ -1,17 +1,20 @@
-import {ACTION_HOME} from '../actions';
+import { GET_PRODUCT_SUCCESS, GET_PRODUCT_ERROR } from '../../actions';
 
 const stateInitial = {
     // my state
-    home: "home"
+    products: [],
+    error: ""
 }
 
 const HomeReducer = (state = stateInitial, action) => {
         switch(action.type){
-            case ACTION_HOME: 
-                return "Home reducer"    
+            case GET_PRODUCT_SUCCESS:
+                return {...state, products: action.products}
+            case GET_PRODUCT_ERROR:
+                return {...state, error: action.error}
             default :
                 return state
         }
 }
 
-export { HomeReducer };
+export default HomeReducer;
