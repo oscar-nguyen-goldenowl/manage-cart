@@ -1,14 +1,30 @@
-import React , {Fragment} from 'react';
+import React , {Fragment, Component} from 'react';
+import {connect} from 'react-redux';
 import './loading.css';
 
-const Loading = () => {
-    return (
-        <Fragment>
-            <div className='loading'>
-                <img src="./images/loading.gif" alt='loading'/>    
-            </div>
-        </Fragment>
-    );
-};
+const loading_url = '/images/loading.gif';
 
-export default Loading;
+class index extends Component {
+    render() {
+        return (
+            <Fragment>
+            { 
+                this.props.isloading ?  
+                <div className='loading'>
+                    <img src={loading_url} alt='loading'/>    
+                </div> : 
+                ""
+            }
+        </Fragment>
+        );
+    }
+}
+
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        isloading: state.HomeReducer.isloading,
+    }
+  }
+
+export default connect( mapStateToProps )(index);

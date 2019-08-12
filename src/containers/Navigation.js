@@ -12,21 +12,15 @@ class Navigation extends Component {
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
                             <Link to="/" className="nav-link text-white">Home <span className="sr-only">(current)</span></Link>
-                            {/* <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a> */}
-                        </li>
-                        <li className="nav-item active">
-                            <Link to="/cart" className="nav-link text-white">Cart <span className="sr-only">(current)</span></Link>
-                            {/* <a className="nav-link" href="/">Cart <span className="sr-only">(current)</span></a> */}
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle text-white" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Categories
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a className="dropdown-item" href="/">Categories 1</a>
-                                <a className="dropdown-item" href="/">Categories 2</a>
-                                <div className="dropdown-divider" />
-                                <a className="dropdown-item" href="/">Something else here</a>
+                                <Link to="/products/1" className="dropdown-item">product 1</Link>
+                                <Link to="/products/2" className="dropdown-item">product 2</Link>
+                                <Link to="/products/3" className="dropdown-item">product 3</Link>
                             </div>
                         </li>
                     </ul>

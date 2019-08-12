@@ -1,7 +1,7 @@
 
-export const GET_PRODUCT = "GET_PRODUCT";
 export const GET_PRODUCT_SUCCESS = "GET_PRODUCT_SUCCESS";
 export const GET_PRODUCT_ERROR = "GET_PRODUCT_ERROR";
+export const RESET_PRODUCTS = "RESET_PRODUCTs";
 
 // export const getProducts = (pagination) => {
 //     // xu ly logic
@@ -23,6 +23,14 @@ export const getProductsError = (error) => {
     return {
         type: GET_PRODUCT_ERROR,
         error
+    }
+}
+
+
+export const resetProducts = () => {
+    return {
+        type: RESET_PRODUCTS,
+        products: []
     }
 }
 // export const parseData = (rawData) => {

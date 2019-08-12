@@ -1,9 +1,15 @@
-import { GET_PRODUCT_SUCCESS, GET_PRODUCT_ERROR } from '../../actions';
+import { 
+    GET_PRODUCT_SUCCESS, 
+    GET_PRODUCT_ERROR,
+    RESET_PRODUCTS,
+    LOADING 
+} from '../../actions';
 
 const stateInitial = {
     // my state
     products: [],
-    error: ""
+    error: "",
+    isloading: false
 }
 
 const HomeReducer = (state = stateInitial, action) => {
@@ -12,6 +18,10 @@ const HomeReducer = (state = stateInitial, action) => {
                 return {...state, products: action.products}
             case GET_PRODUCT_ERROR:
                 return {...state, error: action.error}
+            case RESET_PRODUCTS:
+                return {...state, products: action.products}
+            case LOADING:
+                return {...state, isloading: action.isloading}
             default :
                 return state
         }
