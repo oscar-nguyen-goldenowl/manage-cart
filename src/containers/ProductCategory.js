@@ -21,11 +21,12 @@ class ProductCategory extends Component {
                     
                 }
             )
-            .catch(err => this.props.getProductCategorySuccess('fails'))   
+            .catch(err => this.props.getProductCategoryError(err))   
         
     }
     // take event change params of router
     componentWillReceiveProps(nextProps){
+        this.props.loading(true);
         if(nextProps.match.params.slug !== this.props.match.params.slug){
             API.get(`http://localhost:3000/products?categoryId=${nextProps.match.params.slug}`)
             .then(res => { 
@@ -34,7 +35,7 @@ class ProductCategory extends Component {
                     
                 }
             )
-            .catch(err => this.props.getProductCategorySuccess('fails'))  
+            .catch(err => this.props.getProductCategoryError(err))  
         }
     }
 

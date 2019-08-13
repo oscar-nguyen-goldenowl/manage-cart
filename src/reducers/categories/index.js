@@ -7,15 +7,13 @@ import {
 const stateInitial = {
     // my state
     products: [],
-    error: "",
+    error: [],
   
 }
 
 const ProductReducer = (state = stateInitial, action) => {
         switch(action.type){
             case GET_PRODUCT_CATEGORY_SUCCESS:
-                console.log(action.products);
-                
                 return {...state, products: action.products}
             case GET_PRODUCT_CATEGORY_ERROR:
                 return {...state, error: action.error}

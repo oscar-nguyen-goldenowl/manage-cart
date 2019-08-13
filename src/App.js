@@ -3,8 +3,6 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import Home from './containers/Home';
 import Navigation from './containers/Navigation';
 import ProductCategory from './containers/ProductCategory';
-// import Login from './components/login';
-// import Error from './components/error';
 import Loading from './components/loading';
 
 

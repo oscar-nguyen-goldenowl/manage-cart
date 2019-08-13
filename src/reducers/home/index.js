@@ -9,7 +9,7 @@ import {
 const stateInitial = {
     // my state
     products: [],
-    error: "",
+    error: [],
     amounts: [],
     isLoading: false
 }

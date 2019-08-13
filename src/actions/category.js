@@ -1,6 +1,6 @@
 export const GET_PRODUCT_CATEGORY_SUCCESS = "GET_PRODUCT_CATEGORY_SUCCESS";
 export const GET_PRODUCT_CATEGORY_ERROR = "GET_PRODUCT_CATEGORY_ERROR";
-export const RESET_PRODUCT = "RESET_PRODCUT";
+export const RESET_PRODUCT = "RESET_PRODUCT";
 
 export const getProductCategorySuccess = (products) => {
     return {
