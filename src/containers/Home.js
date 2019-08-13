@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { 
+    getCategoriesSuccess,
+    getCategoriesError,
     getAmountCategories,
     getProductsSuccess, 
     getProductsError, 
@@ -14,6 +16,16 @@ import Product from '../components/product';
 class Home extends Component {
     
     componentDidMount() {
+
+        API.get('http://localhost:3000/categories')
+            .then(res => { 
+                    this.props.getCategoriesSuccess(res.data)
+                }
+            )
+            .catch(err => {
+                    this.props.getCategoriesError(err)
+                }
+            ) 
 
         this.props.loading(true);
 
@@ -29,9 +41,9 @@ class Home extends Component {
                 }
             )
             .catch(err => {
-                    this.props.getProductsError("fails")
+                    this.props.getProductsError(err)
                 }
-            )   
+            )    
     }
     componentWillUnmount() {
         this.props.resetProducts();
@@ -68,6 +80,8 @@ const mapStateToProps = (state, ownProps) => {
   }
 
 const mapDispatchToProps = {
+    getCategoriesSuccess,
+    getCategoriesError,
     getAmountCategories,
     getProductsSuccess,
     getProductsError,

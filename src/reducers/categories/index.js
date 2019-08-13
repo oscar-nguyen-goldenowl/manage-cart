@@ -1,4 +1,6 @@
 import { 
+    GET_CATEGORIES_SUCCESS,
+    GET_CATEGORIES_ERROR,
     GET_PRODUCT_CATEGORY_SUCCESS, 
     GET_PRODUCT_CATEGORY_ERROR,
     RESET_PRODUCT
@@ -7,12 +9,17 @@ import {
 const stateInitial = {
     // my state
     products: [],
-    error: [],
+    categories: [],
+    error: null,
   
 }
 
 const ProductReducer = (state = stateInitial, action) => {
         switch(action.type){
+            case GET_CATEGORIES_SUCCESS:
+                return {...state, categories: action.categories}
+            case GET_CATEGORIES_ERROR:
+                return {...state, error: action.error}
             case GET_PRODUCT_CATEGORY_SUCCESS:
                 return {...state, products: action.products}
             case GET_PRODUCT_CATEGORY_ERROR:
