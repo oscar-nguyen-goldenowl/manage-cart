@@ -7,6 +7,7 @@ import Loading from './components/loading';
 import Signin from './components/signin';
 import Signup from './components/signup';
 
+import "./App.css";
 
 
 class App extends Component {
