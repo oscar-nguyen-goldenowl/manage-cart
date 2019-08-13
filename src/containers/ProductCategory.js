@@ -16,11 +16,9 @@ class ProductCategory extends Component {
  
         API.get(`http://localhost:3000/products?categoryId=${this.props.match.params.slug}`)
             .then(res => { 
-                    this.props.getProductCategorySuccess(res.data);
-                    this.props.loading(false);
-                    
-                }
-            )
+                this.props.getProductCategorySuccess(res.data);
+                this.props.loading(false);  
+            })
             .catch(err => this.props.getProductCategoryError(err))   
         
     }
@@ -30,11 +28,9 @@ class ProductCategory extends Component {
         if(nextProps.match.params.slug !== this.props.match.params.slug){
             API.get(`http://localhost:3000/products?categoryId=${nextProps.match.params.slug}`)
             .then(res => { 
-                    this.props.getProductCategorySuccess(res.data);
-                    this.props.loading(false);
-                    
-                }
-            )
+                this.props.getProductCategorySuccess(res.data);
+                this.props.loading(false);    
+            })
             .catch(err => this.props.getProductCategoryError(err))  
         }
     }

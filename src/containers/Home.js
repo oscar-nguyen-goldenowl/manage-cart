@@ -18,32 +18,22 @@ class Home extends Component {
     componentDidMount() {
 
         API.get('http://localhost:3000/categories')
-            .then(res => { 
-                    this.props.getCategoriesSuccess(res.data)
-                }
-            )
-            .catch(err => {
-                    this.props.getCategoriesError(err)
-                }
-            ) 
+            .then(res => this.props.getCategoriesSuccess(res.data))
+            .catch(err => this.props.getCategoriesError(err)) 
 
         this.props.loading(true);
 
         API.get('http://localhost:3000/products')
             .then(res => { 
 
-                    this.props.getProductsSuccess(res.data)
+                this.props.getProductsSuccess(res.data)
 
-                    this.props.getAmountCategories(res.data)
+                this.props.getAmountCategories(res.data)
 
-                    this.props.loading(false);
+                this.props.loading(false);
                     
-                }
-            )
-            .catch(err => {
-                    this.props.getProductsError(err)
-                }
-            )    
+            })
+            .catch(err => this.props.getProductsError(err))    
     }
     componentWillUnmount() {
         this.props.resetProducts();
