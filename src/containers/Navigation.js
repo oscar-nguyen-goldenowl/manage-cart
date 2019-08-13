@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 class Navigation extends Component {
+    
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -12,21 +14,17 @@ class Navigation extends Component {
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
                             <Link to="/" className="nav-link">Home <span className="sr-only">(current)</span></Link>
-                            {/* <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a> */}
-                        </li>
-                        <li className="nav-item active">
-                            <Link to="/cart" className="nav-link">Cart <span className="sr-only">(current)</span></Link>
-                            {/* <a className="nav-link" href="/">Cart <span className="sr-only">(current)</span></a> */}
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Categories
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a className="dropdown-item" href="/">Categories 1</a>
-                                <a className="dropdown-item" href="/">Categories 2</a>
-                                <div className="dropdown-divider" />
-                                <a className="dropdown-item" href="/">Something else here</a>
+                                {
+                                    this.props.amounts.map((category, index) => {
+                                        return <Link to={`/products/${category}`} key={index} className="dropdown-item">product {category}</Link>
+                                    })
+                                }
                             </div>
                         </li>
                     </ul>
@@ -39,5 +37,11 @@ class Navigation extends Component {
         );
     }
 }
+const mapStateToProps = (state, ownProps) => {
+    return {
+       amounts: state.HomeReducer.amounts
+    }
+  }
 
-export default Navigation;
+
+export default connect( mapStateToProps )(Navigation);

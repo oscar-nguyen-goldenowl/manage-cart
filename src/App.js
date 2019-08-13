@@ -1,8 +1,11 @@
 import React, { Fragment, Component } from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import Home from './containers/Home';
-import Cart from './containers/Cart';
 import Navigation from './containers/Navigation';
+import ProductCategory from './containers/ProductCategory';
+// import Login from './components/login';
+// import Error from './components/error';
+import Loading from './components/loading';
 
 
 
@@ -12,8 +15,9 @@ class App extends Component {
       <Fragment>
         <Router>
           <Navigation/>
+          <Loading/>
           <Route exact path="/" component={Home}/>
-          <Route exact path="/cart" component={Cart}/>
+          <Route exact path="/products/:slug" component={ProductCategory}/>
         </Router>
       </Fragment>
     );
