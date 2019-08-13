@@ -1,33 +1,60 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { getProductsSuccess, getProductsError } from '../actions';
-// import axios from 'axios';
+import { 
+    getAmountCategories,
+    getProductsSuccess, 
+    getProductsError, 
+    resetProducts,
+    loading } from '../actions';
 import * as API from '../api';
+
+import Product from '../components/product';
 
 
 class Home extends Component {
     
     componentDidMount() {
-        // get('http://localhost:3000/products/5')
-        //     .then(res => this.props.getProductsSuccess(res.data))
-        //     .catch(err => this.props.getProductsError(err))
-        API.erase('http://localhost:3000/products/4')
-            .then(res => {
-                API.get('http://localhost:3000/products')
-                .then(res => this.props.getProductsSuccess(res.data))
-                .catch(err => this.props.getProductsError(err))
-            })
+
+        this.props.loading(true);
+
+        API.get('http://localhost:3000/products')
+            .then(res => { 
+
+                    this.props.getProductsSuccess(res.data)
+
+                    this.props.getAmountCategories(res.data)
+
+                    this.props.loading(false);
+                    
+                }
+            )
             .catch(err => {
-                console.log(err);
-            })
+                    this.props.getProductsError("fails")
+                }
+            )   
+    }
+    componentWillUnmount() {
+        this.props.resetProducts();
     }
 
     render() {
         return (
             <Fragment>
-                {
-                    this.props.error ? JSON.stringify(this.props.error) : JSON.stringify(this.props.products)
-                }
+                <div className="container">
+                    <div className="card-deck">
+                        <div className="row">
+                        {
+                            this.props.products || this.props.error !== "fails" ? 
+                            (
+                                this.props.products.map(product => {
+                                    return  <Product key={product.id} product = {product}/>
+                                })
+                            )  
+                            : this.props.error
+                        }
+                        </div>
+                    </div>
+                </div>
             </Fragment>
         );
     }
@@ -36,18 +63,16 @@ class Home extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         products: state.HomeReducer.products,
-        error: state.HomeReducer.error
+        error: state.HomeReducer.error,
     }
   }
-// const mapDispatchToProps = (dispatch, ownProps) => {
-//     return {
-//        listProducts: (pagination) => dispatch(getProducts(pagination)),
-//        parseData: () => dispatch(parseData())
-//     }
-//   }
+
 const mapDispatchToProps = {
+    getAmountCategories,
     getProductsSuccess,
-    getProductsError
+    getProductsError,
+    resetProducts,
+    loading
 }
 
 export default connect( mapStateToProps, mapDispatchToProps )(Home);
