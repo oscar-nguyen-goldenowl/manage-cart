@@ -29,7 +29,8 @@ class Navigation extends Component {
                         </li>
                     </ul>
                     <div className="form-inline my-2 my-lg-0">
-                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Sign in</button>
+                        <Link to="/signin" className="btn btn-outline-success my-2 my-sm-0" >Sign in</Link>
+                        <Link to="/signup" className="btn btn-outline-success my-2 my-sm-0 ml-4" >Sign up</Link>
                     </div>
                 </div>
             </nav>
