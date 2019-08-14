@@ -4,7 +4,7 @@ import './loading.css';
 
 const loading_url = '/images/loading.gif';
 
-class index extends Component {
+class Loading extends Component {
     render() {
         return (
             <Fragment>
@@ -27,4 +27,4 @@ const mapStateToProps = (state, ownProps) => {
     }
   }
 
-export default connect( mapStateToProps )(index);
+export default connect( mapStateToProps )(Loading);

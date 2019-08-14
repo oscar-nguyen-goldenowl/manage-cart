@@ -1,46 +1,81 @@
-import React, { Component } from 'react';
-import "./signin.css";
+import React,{ Component } from 'react';
+import {
+    Input, 
+    FormControl, 
+    InputLabel, 
+    Button, 
+    Paper,
+    Grid,
+    Typography,
+    FormHelperText
+} from '@material-ui/core'
+import { Formik, Field } from 'formik';
+import * as Yup from 'yup';
 
 class index extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: "",
-            password: "",
-            errors: ""
-        }
+    state = {
+        username: '',
+        password: '',
     }
-    onChange = (event) => {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = event.target.name;
-        this.setState({
-            [name]: value
-        });
-    }
-
-    onSubmit = (e) => {
-        e.preventDefault();
-        this.props.history.push('/');
+    validationSchema = Yup.object().shape({
+        username: Yup.string()
+                    .required('Username is required')
+                    .min(5, 'Username must have min 5 characters')
+                    .max(10, 'Usernme have max 10 charaters'),
+        password: Yup.string()
+                    .required('Password is required')
+                    .min(8, 'Password must have min 8 characters')
+    })
+    Render = props => (
+        <form onSubmit={props.handleSubmit}>
+            <Grid container justify='center' alignContent='center'>
+                 <Grid item xs={6} md={4}>
+                    <Paper elevation={4} style={{ padding: '20px 15px', marginTop: '30px' }}>
+                        <Typography gutterBottom>Signin</Typography>
+                        <FormControl fullWidth margin='normal' error={props.touched.username && !!props.errors.username}>
+                            <InputLabel>Username</InputLabel>
+                            <Field 
+                                name='username'
+                                render={({field}) => (
+                                    <Input fullWidth {...field}/>
+                            )}/>
+                            {props.touched.username && <FormHelperText>{props.errors.username}</FormHelperText>}
+                        </FormControl>  
+                        <FormControl fullWidth margin='normal' error={props.touched.password && !!props.errors.password}>
+                            <InputLabel>Password</InputLabel>
+                            <Field 
+                                name="password"
+                                render={({field}) => (
+                                    <Input fullWidth type="password" {...field}/>
+                            )}/>
+                            {props.touched.password && <FormHelperText>{props.errors.password}</FormHelperText>}
+                        </FormControl>
+                        <FormControl fullWidth margin='normal'>
+                            <Button
+                                variant='outlined'
+                                type='submit'
+                                style={{outline: 'none'}}
+                            >
+                                Signup
+                                </Button>
+                        </FormControl>
+                    </Paper>
+                </Grid>
+            </Grid>
+        </form>
+    )
+    onSubmit = (values, actions) => {
+        console.log(values);
     }
     render() {
         return (
-            <div className="signin">
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="username">Username</label>
-                        <input type="text" className="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder="Enter username" required/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" className="form-control" id="password" name="password" placeholder="Password" />
-                    </div>
-                    <div className="form-check">
-                        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                        <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-                    </div>
-                    <button type="submit" className="btn btn-primary mt-4">Sign in</button>
-                </form>
+            <div>
+                <Formik
+                    initialValues={this.state}
+                    onSubmit={this.onSubmit}
+                    validationSchema={this.validationSchema}
+                    render={this.Render}
+                />
             </div>
         );
     }
