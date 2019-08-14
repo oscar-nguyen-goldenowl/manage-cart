@@ -1,15 +1,15 @@
 import React from 'react';
 
 const Product = (props) => {
-    const {name, url} = props.product;
+    const {name, url, price} = props.product;
     return (
         <div className="col-sm-4 mt-4">
             <div className="card">
-                <img className="card-img-top" src={url} alt="Card cap" />
+                <img className="card-img-top" style={{maxWidth: 150, margin: 'auto' }} src={url} alt="Card cap" />
                 <div className="card-body">
                     <h5 className="card-title">{name}</h5>
-                    <p className="card-text">{name}</p>
-                    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                    <p className="card-text">${price}</p>
+                    <button className="btn btn-info">Mua</button>
                 </div>
             </div>
         </div>
