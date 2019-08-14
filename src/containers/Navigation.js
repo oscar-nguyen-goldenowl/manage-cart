@@ -22,10 +22,9 @@ class Navigation extends Component {
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {
-                                    categories.length && categories ? categories.map(category => {
+                                    categories && categories.length && categories.map(category => {
                                         return <Link to={`/products/${category.id}`} key={category.id} className="dropdown-item">{category.name}</Link>
-                                    }): 
-                                    ""
+                                    })
                                 }
                             </div>
                         </li>
