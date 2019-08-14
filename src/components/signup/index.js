@@ -13,7 +13,7 @@ import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 
 
-class Signin extends Component {
+class Signup extends Component {
     state = {
         username: '',
         email: '',
@@ -111,4 +111,4 @@ class Signin extends Component {
 }
 
 
-export default Signin;
+export default Signup;

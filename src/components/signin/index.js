@@ -12,7 +12,7 @@ import {
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 
-class index extends Component {
+class Signin extends Component {
     state = {
         username: '',
         password: '',
@@ -81,4 +81,4 @@ class index extends Component {
     }
 }
 
-export default index;
+export default Signin;
