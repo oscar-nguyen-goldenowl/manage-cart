@@ -10,6 +10,7 @@ const Product = (props) => {
                     <h5 className="card-title">{name}</h5>
                     <p className="card-text">${price}</p>
                     <button className="btn btn-info">Mua</button>
+                    <button className="btn btn-primary ml-2">Detail</button>
                 </div>
             </div>
         </div>
