@@ -1,6 +1,6 @@
 import React from 'react';
 
-const index = (props) => {
+const Product = (props) => {
     const {name, url} = props.product;
     return (
         <div className="col-sm-4 mt-4">
@@ -16,4 +16,4 @@ const index = (props) => {
     );
 };
 
-export default index;
+export default Product;
