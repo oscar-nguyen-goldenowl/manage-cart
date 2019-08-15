@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { 
     getCategoriesSuccess,
     getCategoriesError,
-    getAmountCategories,
+    getAmountProduct,
     getProductsSuccess, 
     getProductsError, 
     resetProducts,
@@ -11,9 +11,17 @@ import {
 import * as API from '../api';
 
 import Product from '../components/product';
+import Pagination from '../components/pagination';
 
 
 class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentPage: 1,
+            itemPage: 10
+        }
+    }
     
     componentDidMount() {
 
@@ -21,41 +29,63 @@ class Home extends Component {
             .then(res => this.props.getCategoriesSuccess(res.data))
             .catch(err => this.props.getCategoriesError(err)) 
 
-        this.props.loading(true);
+        API.get('http://localhost:3000/products/count')
+        .then(res => this.props.getAmountProduct(res.data))
+        .catch(err => err) 
 
-        API.get('http://localhost:3000/products')
-            .then(res => { 
-
-                this.props.getProductsSuccess(res.data)
-
-                this.props.getAmountCategories(res.data)
-
-                this.props.loading(false);
-                    
-            })
-            .catch(err => this.props.getProductsError(err))    
+        this.getProductsPagination(this.state.currentPage, this.state.itemPage);  
     }
     componentWillUnmount() {
         this.props.resetProducts();
     }
 
+    handleClick = (event) => {
+
+        event.preventDefault();
+
+        this.setState({
+            currentPage: Number(event.target.id)
+        }, 
+        () => {
+            this.getProductsPagination(this.state.currentPage, this.state.itemPage);
+        });
+    }
+
+    getProductsPagination = (page, limit) => {
+        this.props.loading(true);  
+        API.get(`http://localhost:3000/products?_page=${page}&_limit=${limit}`)
+        .then(res => { 
+            this.props.getProductsSuccess(res.data)
+            this.props.loading(false);  
+        })
+        .catch(err =>  this.props.getProductsError(err))
+    }
+
     render() {
+        const {products, amounts, error } = this.props; 
+
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(amounts / 10); i++) {
+            pageNumbers.push(i);
+        }
+
         return (
             <Fragment>
                 <div className="container">
                     <div className="card-deck">
                         <div className="row">
                         {
-                            this.props.products || this.props.error !== "fails" ? 
+                            products || error !== "fails" ? 
                             (
-                                this.props.products.map(product => {
-                                    return  <Product key={product.id} product = {product}/>
+                                products.map((product) => {
+                                    return <Product key={product.id} product = {product}/>
                                 })
                             )  
-                            : this.props.error
+                            : error
                         }
                         </div>
                     </div>
+                    <Pagination pageNumbers={pageNumbers}  handleClick={this.handleClick}/>
                 </div>
             </Fragment>
         );
@@ -65,6 +95,7 @@ class Home extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         products: state.HomeReducer.products,
+        amounts: state.HomeReducer.amounts,
         error: state.HomeReducer.error,
     }
   }
@@ -72,7 +103,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
     getCategoriesSuccess,
     getCategoriesError,
-    getAmountCategories,
+    getAmountProduct,
     getProductsSuccess,
     getProductsError,
     resetProducts,
