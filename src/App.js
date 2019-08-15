@@ -6,6 +6,7 @@ import ProductCategory from './containers/ProductCategory';
 import Loading from './components/loading';
 import Signin from './components/signin';
 import Signup from './components/signup';
+import ErrorBoundary from './components/errorBoundary';
 
 import "./App.css";
 
@@ -17,10 +18,12 @@ class App extends Component {
         <Router>
           <Navigation/>
           <Loading/>
-          <Route exact path="/" component={Home}/>
-          <Route exact path="/products/:slug" component={ProductCategory}/>
-          <Route exact path="/signin" component={Signin}/>
-          <Route exact path="/signup" component={Signup}/>
+          <ErrorBoundary>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/products/:slug" component={ProductCategory}/>
+            <Route exact path="/signin" component={Signin}/>
+            <Route exact path="/signup" component={Signup}/>
+          </ErrorBoundary>
         </Router>
       </Fragment>
     );
