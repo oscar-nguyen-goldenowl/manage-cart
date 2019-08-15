@@ -11,6 +11,7 @@ import {
 import * as API from '../api';
 
 import Product from '../components/product';
+import Pagination from '../components/pagination';
 
 
 class Home extends Component {
@@ -28,42 +29,36 @@ class Home extends Component {
             .then(res => this.props.getCategoriesSuccess(res.data))
             .catch(err => this.props.getCategoriesError(err)) 
 
-        API.get('http://localhost:3000/products')
+        API.get('http://localhost:3000/products/count')
         .then(res => this.props.getAmountProduct(res.data))
         .catch(err => err) 
 
-        this.props.loading(true);
-
-        API.get(`http://localhost:3000/products?_page=${this.state.currentPage}&_limit=${this.state.itemPage}`)
-            .then(res => { 
-
-                this.props.getProductsSuccess(res.data)
-
-                this.props.loading(false);
-                    
-            })
-            .catch(err => this.props.getProductsError(err))    
+        this.getProductsPagination(this.state.currentPage, this.state.itemPage);  
     }
     componentWillUnmount() {
         this.props.resetProducts();
     }
 
     handleClick = (event) => {
-        
+
         event.preventDefault();
 
         this.setState({
             currentPage: Number(event.target.id)
         }, 
         () => {
-            this.props.loading(true);  
-            API.get(`http://localhost:3000/products?_page=${this.state.currentPage}&_limit=${this.state.itemPage}`)
-            .then(res => { 
-                this.props.getProductsSuccess(res.data)
-                this.props.loading(false);  
-            })
-            .catch(err =>  this.props.getProductsError(err))
+            this.getProductsPagination(this.state.currentPage, this.state.itemPage);
         });
+    }
+
+    getProductsPagination = (page, limit) => {
+        this.props.loading(true);  
+        API.get(`http://localhost:3000/products?_page=${page}&_limit=${limit}`)
+        .then(res => { 
+            this.props.getProductsSuccess(res.data)
+            this.props.loading(false);  
+        })
+        .catch(err =>  this.props.getProductsError(err))
     }
 
     render() {
@@ -74,11 +69,6 @@ class Home extends Component {
             pageNumbers.push(i);
         }
 
-        const renderPageNumbers = pageNumbers.map(number => {
-            return  <li className="page-item" key={number}>
-                        <a className="page-link" href="/" id={number} onClick={this.handleClick}>{number}</a>
-                    </li>
-        })
         return (
             <Fragment>
                 <div className="container">
@@ -95,23 +85,7 @@ class Home extends Component {
                         }
                         </div>
                     </div>
-                    <nav aria-label="Page navigation example" style={{marginTop: 50}}>
-                        <ul className="pagination" style={{justifyContent: 'center'}}>
-                            <li className="page-item">
-                                <a id='1' onClick={this.handleClick} className="page-link" href="/" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span className="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            {renderPageNumbers}
-                            <li className="page-item">
-                                <a id={pageNumbers[pageNumbers.length - 1]} onClick={this.handleClick} className="page-link" href="/" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span className="sr-only" >Next</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                    <Pagination pageNumbers={pageNumbers}  handleClick={this.handleClick}/>
                 </div>
             </Fragment>
         );

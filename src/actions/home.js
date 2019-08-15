@@ -13,11 +13,10 @@ export const loading = (isLoading) => {
     }
 }
 
-export const getAmountProduct = (data) => {
-    
+export const getAmountProduct = ({totalItems}) => {
     return {
         type: GET_AMOUNT_PRODUCT,
-        amounts: data.length
+        amounts: totalItems
     }
 }
 

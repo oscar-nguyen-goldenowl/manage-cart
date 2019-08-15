@@ -24,6 +24,11 @@ server.post('/session', (req, res) => {
   }
 });
 
+server.get('/products/count', (req, res) => {
+  const resData = router.db.get('products').value();
+  res.json({totalItems: resData.length});
+})
+
 server.get('/categories/:catId/products', (req, res) => {
     const { catId } = req.params;
     let { _page, _limit } = req.query;
