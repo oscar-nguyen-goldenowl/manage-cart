@@ -64,8 +64,8 @@ class ProductCategory extends Component {
     }
 
     render() {
-        const {products, amounts, error } = this.props; 
-        
+        let {products, amounts, error } = this.props; 
+
         const pageNumbers = [];
         for (let i = 1; i <= Math.ceil(amounts / 10); i++) {
             pageNumbers.push(i);
@@ -75,7 +75,7 @@ class ProductCategory extends Component {
             <Fragment>
                 <div className="container">
                     <div className="card-deck">
-                        <div className="row">
+                        <div className="row" style={{width: '100%'}}>
                         {
                                 products && products.length ? 
                                     (

@@ -73,9 +73,9 @@ class Home extends Component {
             <Fragment>
                 <div className="container">
                     <div className="card-deck">
-                        <div className="row">
+                        <div className="row" style={{width: '100%'}}>
                         {
-                            products || error !== "fails" ? 
+                            products && products.length ? 
                             (
                                 products.map((product) => {
                                     return <Product key={product.id} product = {product}/>
