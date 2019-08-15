@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 
@@ -15,7 +15,7 @@ class Navigation extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
-                            <Link to="/" className="nav-link">Home <span className="sr-only">(current)</span></Link>
+                            <NavLink to="/" className="nav-link">Home <span className="sr-only">(current)</span></NavLink>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -24,15 +24,15 @@ class Navigation extends Component {
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {
                                     categories && categories.length && categories.map(category => {
-                                        return <Link to={`/products/${category.id}`} key={category.id} className="dropdown-item">{category.name}</Link>
+                                        return <NavLink to={`/products/${category.id}`} key={category.id} className="dropdown-item">{category.name}</NavLink>
                                     })
                                 }
                             </div>
                         </li>
                     </ul>
                     <div className="form-inline my-2 my-lg-0">
-                        <Link to="/signin" className="btn btn-outline-success my-2 my-sm-0 text-white" >Sign in</Link>
-                        <Link to="/signup" className="btn btn-outline-success my-2 my-sm-0 ml-4 text-white" >Sign up</Link>
+                        <NavLink to="/signin" className="btn btn-outline-success my-2 my-sm-0 text-white" >Sign in</NavLink>
+                        <NavLink to="/signup" className="btn btn-outline-success my-2 my-sm-0 ml-4 text-white" >Sign up</NavLink>
                     </div>
                 </div>
             </nav>
