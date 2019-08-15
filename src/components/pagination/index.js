@@ -14,7 +14,7 @@ class Pagination extends Component {
             <nav aria-label="Page navigation example" style={{marginTop: 50}}>
                 <ul className="pagination" style={{justifyContent: 'center'}}>
                     <li className="page-item">
-                        <a id='1' onClick={this.handleClick} className="page-link" href="/" aria-label="Previous">
+                        <a id='1' onClick={handleClick} className="page-link" href="/" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                             <span className="sr-only">Previous</span>
                         </a>
