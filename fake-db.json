@@ -2,695 +2,719 @@
   "products": [
     {
       "id": 3,
-      "name": "Frazer",
+      "name": "Bộ chăm sóc da mặt",
       "categoryId": 1,
       "price": 162,
-      "url": "http://dummyimage.com/221x112.bmp/ff4444/ffffff"
+      "des": "Bảo vệ da toàn năng",
+      "url": "/images/diendung/bo-cham-soc-da-mat.jpg"
     },
     {
       "id": 5,
-      "name": "Hermann",
-      "categoryId": 2,
+      "name": "Bộ lau nha",
+      "categoryId": 1,
       "price": 931,
-      "url": "http://dummyimage.com/221x112.bmp/ff4444/ffffff"
+      "des": "Lau sạch mọi loại vết bẩn",
+      "url": "/images/diendung/bo-lau-nha.jpg"
     },
     {
       "id": 6,
-      "name": "Twyla",
-      "categoryId": 3,
+      "name": "Bộ lọc điện",
+      "categoryId": 1,
       "price": 308,
-      "url": "http://dummyimage.com/221x112.bmp/ff4444/ffffff"
+      "des": "Bộ lọc điện toàn năng",
+      "url": "/images/diendung/bo-loc-dien.jpg"
     },
     {
       "id": 7,
-      "name": "Francine",
+      "name": "Bột giặc",
       "categoryId": 1,
       "price": 941,
-      "url": "http://dummyimage.com/221x112.bmp/ff4444/ffffff"
+      "des": "Bột giặc tinh thể xanh, trắng sạch siêu thơm",
+      "url": "/images/diendung/bot-giac.jpg"
     },
     {
       "id": 8,
-      "name": "Chris",
-      "categoryId": 2,
+      "name": "Lò nướng",
+      "categoryId": 1,
       "price": 784,
-      "url": "http://dummyimage.com/221x112.bmp/ff4444/ffffff"
+      "des": "Lò nướng tòan năng, nướng mọi đồ vật",
+      "url": "/images/diendung/lo-nuong.jpg"
     },
     {
       "id": 9,
-      "name": "Guendolen",
-      "categoryId": 3,
+      "name": "Máy ép trái cây",
+      "categoryId": 1,
       "price": 912,
-      "url": "http://dummyimage.com/221x112.bmp/ff4444/ffffff"
+      "des": "Máy ép trái cây siêu rẽ, siêu nhanh",
+      "url": "/images/diendung/may-ep-trai-cay.jpg"
     },
     {
       "id": 10,
-      "name": "Adara",
-      "categoryId": 4,
+      "name": "Máy giặc",
+      "categoryId": 1,
       "price": 581,
-      "url": "http://dummyimage.com/221x112.bmp/ff4444/ffffff"
+      "des": "Máy giặc đa năng, giặc mọi chất liệu vãi",
+      "url": "/images/diendung/may-giac.jpg"
     },
     {
       "id": 11,
-      "name": "Zachery",
+      "name": "Máy hâp thực phẩm",
       "categoryId": 1,
       "price": 129,
-      "url": "http://dummyimage.com/179x134.bmp/cc0000/ffffff"
+      "des": "Máy hấp đa năng, chỉ cần bổ đồ ăn vào và đợi",
+      "url": "/images/diendung/may-hap-thuc-pham.jpg"
     },
     {
       "id": 12,
-      "name": "Libbi",
-      "categoryId": 2,
+      "name": "Máy làm tỏi đen",
+      "categoryId": 1,
       "price": 990,
-      "url": "http://dummyimage.com/221x112.bmp/ff4444/ffffff"
+      "url": "/images/diendung/may-lam-toi-den.jpg"
     },
     {
       "id": 13,
-      "name": "Urbanus",
-      "categoryId": 3,
+      "name": "Máy lọc không khí",
+      "categoryId": 1,
       "price": 785,
-      "url": "http://dummyimage.com/221x112.bmp/ff4444/ffffff"
+      "des": "Máy lọc tạo không khí tươi mát mỗi ngày",
+      "url": "/images/diendung/may-loc-khong-khi.jpg"
     },
     {
       "id": 14,
-      "name": "Vitia",
-      "categoryId": 4,
+      "name": "Máy lọc nước",
+      "categoryId": 1,
       "price": 908,
-      "url": "http://dummyimage.com/221x112.bmp/5fa2dd/ffffff"
+      "des": "Lọc nước toàn năng, lọc mọi loại nước",
+      "url": "/images/diendung/may-loc-nuoc.jpg"
     },
     {
       "id": 15,
-      "name": "Cornelia",
+      "name": "Máy nướng bánh mì",
       "categoryId": 1,
       "price": 301,
-      "url": "http://dummyimage.com/221x112.bmp/5fa2dd/ffffff"
+      "des": "Luôn luôn sẳn sàng bánh mì cho bạn",
+      "url": "/images/diendung/may-nuong-banh-mi.jpg"
     },
     {
       "id": 16,
-      "name": "Jo ann",
-      "categoryId": 2,
+      "name": "Máy quạt",
+      "categoryId": 1,
       "price": 285,
-      "url": "http://dummyimage.com/221x112.bmp/5fa2dd/ffffff"
+      "des": "Siêu mát, công suất cao",
+      "url": "/images/diendung/may-quat.jpg"
     },
     {
       "id": 17,
-      "name": "Weider",
-      "categoryId": 3,
+      "name": "Máy rửa bát",
+      "categoryId": 1,
       "price": 860,
-      "url": "http://dummyimage.com/221x112.bmp/5fa2dd/ffffff"
+      "des": "Rửa mọi loại bát",
+      "url": "/images/diendung/may-rua-bat.jpg"
     },
     {
       "id": 18,
-      "name": "Dede",
-      "categoryId": 4,
+      "name": "Máy vắc cam",
+      "categoryId": 1,
       "price": 746,
-      "url": "http://dummyimage.com/221x112.bmp/5fa2dd/ffffff"
+      "des": "Máy vắc cao gọn nhẹ",
+      "url": "/images/diendung/may-vac-cam.jpg"
     },
     {
       "id": 19,
-      "name": "Lorinda",
+      "name": "Máy xay cafe",
       "categoryId": 1,
       "price": 209,
-      "url": "http://dummyimage.com/221x112.bmp/5fa2dd/ffffff"
+      "des": "Máy xay cafe gọn nhẹ",
+      "url": "/images/diendung/may-xay-cafe.jpg"
     },
     {
       "id": 20,
-      "name": "Edin",
-      "categoryId": 2,
+      "name": "Máy xay cam",
+      "categoryId": 1,
       "price": 561,
-      "url": "http://dummyimage.com/221x112.bmp/5fa2dd/ffffff"
+      "des": "Máy xay cao gọn nhẹ",
+      "url": "/images/diendung/may-xay-cam-tay.jpg"
     },
     {
       "id": 21,
-      "name": "Hestia",
-      "categoryId": 3,
+      "name": "Máy xay sinh tố",
+      "categoryId": 1,
       "price": 935,
-      "url": "http://dummyimage.com/221x112.bmp/5fa2dd/ffffff"
+      "des": "Xay mọi loại trái cây",
+      "url": "/images/diendung/may-xay-sinh-to.jpg"
     },
     {
       "id": 22,
-      "name": "Miltie",
-      "categoryId": 4,
+      "name": "Máy xay thịt",
+      "categoryId": 1,
       "price": 396,
-      "url": "http://dummyimage.com/221x112.bmp/5fa2dd/ffffff"
+      "des": "Xay tất cả các loại thịt",
+      "url": "/images/diendung/may-xay-thit.jpg"
     },
     {
       "id": 23,
-      "name": "Kirk",
+      "name": "Máy in",
       "categoryId": 1,
       "price": 616,
-      "url": "http://dummyimage.com/221x112.png/cc0000/ffffff"
+      "des": "Máy in văn phòng siêu gọn, in siêu nhanh",
+      "url": "/images/diendung/mayin.png"
     },
     {
       "id": 24,
-      "name": "Jackie",
-      "categoryId": 2,
+      "name": "Nồi chiên",
+      "categoryId": 1,
       "price": 142,
-      "url": "http://dummyimage.com/221x112.jpg/cc0000/ffffff"
+      "des": "Chiên mọi loại đồ ăn",
+      "url": "/images/diendung/noi-chien.jpg"
     },
     {
       "id": 25,
-      "name": "Corinna",
-      "categoryId": 3,
+      "name": "Nồi nấu cháo đa năng",
+      "categoryId": 1,
       "price": 837,
-      "url": "http://dummyimage.com/221x112.png/dddddd/000000"
+      "des": "Chỉ cần bắt gạo, bạn sẽ có cháo",
+      "url": "/images/diendung/noi-nau-chao-da-nang.jpg"
     },
     {
       "id": 26,
-      "name": "Ade",
-      "categoryId": 4,
+      "name": "Robot hút bụi",
+      "categoryId": 1,
       "price": 922,
-      "url": "http://dummyimage.com/221x112.bmp/cc0000/ffffff"
+      "des": "Hút bụi, hút luôn côn trùng",
+      "url": "/images/diendung/robot-hut-bui.jpg"
     },
     {
       "id": 27,
-      "name": "Leicester",
+      "name": "Tả quần",
       "categoryId": 1,
       "price": 572,
-      "url": "http://dummyimage.com/221x112.jpg/cc0000/ffffff"
+      "des": "Tả quần siêu thắm, siêu thoáng",
+      "url": "/images/diendung/ta-quan.jpg"
     },
     {
       "id": 28,
-      "name": "Ree",
+      "name": "Balo xiaomi",
       "categoryId": 2,
       "price": 327,
-      "url": "http://dummyimage.com/221x112.bmp/dddddd/000000"
+      "des": "Balo gọn nhẹ, thích hợp để đựng laptop",
+      "url": "/images/maytinh/balo-xiaomi.jpg"
     },
     {
       "id": 29,
-      "name": "Cecil",
-      "categoryId": 3,
+      "name": "Bàn phím",
+      "categoryId": 2,
       "price": 113,
-      "url": "http://dummyimage.com/221x112.bmp/ff4444/ffffff"
+      "des": "Bàn phím đa năng",
+      "url": "/images/maytinh/ban-phim.jpg"
     },
     {
       "id": 30,
-      "name": "Dallas",
-      "categoryId": 4,
+      "name": "Bảng vẽ điện tử",
+      "categoryId": 2,
       "price": 218,
-      "url": "http://dummyimage.com/221x112.png/cc0000/ffffff"
+      "des": "Vẽ nhanh gọn",
+      "url": "/images/maytinh/bang-ve-dien-tu.jpg"
     },
     {
       "id": 31,
-      "name": "Silva",
-      "categoryId": 1,
+      "name": "Cáp chuyển đổi HDMI",
+      "categoryId": 2,
       "price": 762,
-      "url": "http://dummyimage.com/221x112.bmp/5fa2dd/ffffff"
+      "des": "Chuyển đổi cổng HDMI nếu máy tính bạn không có cổng",
+      "url": "/images/maytinh/cap-chuyen-doi-hdmi.jpg"
     },
     {
       "id": 32,
-      "name": "Vivianna",
+      "name": "Cáp quang",
       "categoryId": 2,
       "price": 800,
-      "url": "http://dummyimage.com/221x112.bmp/cc0000/ffffff"
+      "des": "Cáp quang được làm thừ thép",
+      "url": "/images/maytinh/cap-quang.jpg"
     },
     {
       "id": 33,
-      "name": "Evita",
-      "categoryId": 3,
+      "name": "CD/DVD",
+      "categoryId": 2,
       "price": 269,
-      "url": "http://dummyimage.com/221x112.jpg/ff4444/ffffff"
+      "des": "Đĩa CD/DVD đa năng",
+      "url": "/images/maytinh/cd-dvd.jpg"
     },
     {
       "id": 34,
-      "name": "Evangelina",
-      "categoryId": 4,
+      "name": "Chân giử màn hình",
+      "categoryId": 2,
       "price": 898,
-      "url": "http://dummyimage.com/221x112.png/ff4444/ffffff"
+      "des": "Chân giữ màn hình, tiện lợi và ngọn nhẹ",
+      "url": "/images/maytinh/chan-giu-man-hinh.jpg"
     },
     {
       "id": 35,
-      "name": "Ilise",
-      "categoryId": 1,
+      "name": "Chuột không dây",
+      "categoryId": 2,
       "price": 543,
-      "url": "http://dummyimage.com/221x112.png/ff4444/ffffff"
+      "des": "Chuột không dây, man đi đâu cũng được",
+      "url": "/images/maytinh/chuot-khong-day.jpg"
     },
     {
       "id": 36,
-      "name": "Sybyl",
+      "name": "Coolpad",
       "categoryId": 2,
       "price": 358,
-      "url": "http://dummyimage.com/221x112.jpg/5fa2dd/ffffff"
+      "des": "Coolpad đa năng",
+      "url": "/images/maytinh/coolpad.jpg"
     },
     {
       "id": 37,
-      "name": "Hilarius",
-      "categoryId": 3,
+      "name": "Đầu bấm mạng",
+      "categoryId": 2,
       "price": 507,
-      "url": "http://dummyimage.com/221x112.png/cc0000/ffffff"
+      "des": "Bấm mạng nhanh chống, mau lẹ",
+      "url": "/images/maytinh/dau-bam-mang.jpg"
     },
     {
       "id": 38,
-      "name": "Luis",
-      "categoryId": 4,
+      "name": "Đầu cáp điện thoại",
+      "categoryId": 2,
       "price": 540,
-      "url": "http://dummyimage.com/221x112.jpg/dddddd/000000"
+      "des": "Đầu cáp đa năng",
+      "url": "/images/maytinh/dau-cap-dien-thoai.jpg"
     },
     {
       "id": 39,
-      "name": "Veronica",
-      "categoryId": 1,
+      "name": "Đầu cáp mạng",
+      "categoryId": 2,
       "price": 306,
-      "url": "http://dummyimage.com/221x112.png/5fa2dd/ffffff"
+      "des": "đầu cáp đa năng",
+      "url": "/images/maytinh/day-cap-mang.jpg"
     },
     {
       "id": 40,
-      "name": "Eduard",
+      "name": "Dây nối âm thanh",
       "categoryId": 2,
       "price": 994,
-      "url": "http://dummyimage.com/221x112.jpg/dddddd/000000"
+      "des": "Dây nói đa năng",
+      "url": "/images/maytinh/day-noi-am-thanh.jpg"
     },
     {
       "id": 41,
-      "name": "Niels",
-      "categoryId": 3,
+      "name": "Ổ cứng",
+      "categoryId": 2,
       "price": 849,
-      "url": "http://dummyimage.com/221x112.jpg/ff4444/ffffff"
+      "des": "Ổ cứng dụng lượng lớn",
+      "url": "/images/maytinh/disk.jpg"
     },
     {
       "id": 42,
-      "name": "Kennedy",
-      "categoryId": 4,
+      "name": "Giá đỡ laptop",
+      "categoryId": 2,
       "price": 730,
-      "url": "http://dummyimage.com/221x112.png/5fa2dd/ffffff"
+      "des": "Giá đỡ tiện dụng",
+      "url": "/images/maytinh/gia-do-laptop.jpg"
     },
     {
       "id": 43,
-      "name": "Corena",
-      "categoryId": 1,
+      "name": "giấy",
+      "categoryId": 2,
       "price": 800,
-      "url": "http://dummyimage.com/221x112.bmp/cc0000/ffffff"
+      "des": "Giấy A4 siêu dày",
+      "url": "/images/maytinh/giay.png"
     },
     {
       "id": 44,
-      "name": "Vite",
+      "name": "Ipad mini",
       "categoryId": 2,
       "price": 562,
-      "url": "http://dummyimage.com/221x112.bmp/5fa2dd/ffffff"
+      "des": "Ipad mini chính hãn siêu nhẹ",
+      "url": "/images/maytinh/ipad-mini.jpg"
     },
     {
       "id": 45,
-      "name": "Osborne",
-      "categoryId": 3,
+      "name": "Ipad wifi",
+      "categoryId": 2,
       "price": 956,
-      "url": "http://dummyimage.com/221x112.bmp/dddddd/000000"
+      "des": "Ipad wifi chính hãng siêu nhẹ",
+      "url": "/images/maytinh/ipad-wifi.jpg"
     },
     {
       "id": 46,
-      "name": "Walton",
-      "categoryId": 4,
+      "name": "Iphone 6s",
+      "categoryId": 2,
       "price": 502,
-      "url": "http://dummyimage.com/221x112.bmp/cc0000/ffffff"
+      "des": "Sang trọng là đây",
+      "url": "/images/maytinh/iphone-6s.jpg"
     },
     {
       "id": 47,
-      "name": "Sara",
-      "categoryId": 1,
+      "name": "Iphone X",
+      "categoryId": 2,
       "price": 208,
-      "url": "http://dummyimage.com/221x112.png/5fa2dd/ffffff"
+      "des": "Sang trong là đây",
+      "url": "/images/maytinh/iphone-x.jpg"
     },
     {
       "id": 48,
-      "name": "Giffard",
+      "name": "Điện thoại Itel",
       "categoryId": 2,
       "price": 166,
-      "url": "http://dummyimage.com/221x112.bmp/dddddd/000000"
+      "des": "Điện thoại đặp đá siêu cứng",
+      "url": "/images/maytinh/itel.jpg"
     },
     {
       "id": 49,
-      "name": "Hazlett",
-      "categoryId": 3,
+      "name": "Kéo cắt ống nước",
+      "categoryId": 2,
       "price": 116,
-      "url": "http://dummyimage.com/221x112.jpg/dddddd/000000"
+      "des": "Kéo cắt ống đa năng",
+      "url": "/images/maytinh/keo-cat-ong-nuoc.jpg"
     },
     {
       "id": 50,
-      "name": "Filbert",
-      "categoryId": 4,
+      "name": "Laptop Asus",
+      "categoryId": 2,
       "price": 545,
-      "url": "http://dummyimage.com/221x112.bmp/ff4444/ffffff"
+      "des": "Asus siêu mỏng, giá cực chất",
+      "url": "/images/maytinh/laptop-asus.jpg"
     },
     {
       "id": 51,
-      "name": "Carmon",
-      "categoryId": 1,
+      "name": "Laptop Dell",
+      "categoryId": 2,
       "price": 171,
-      "url": "http://dummyimage.com/221x112.png/5fa2dd/ffffff"
+      "des": "Dell siêu mỏng giá cực chất",
+      "url": "/images/maytinh/laptop-dell.jpg"
     },
     {
       "id": 52,
-      "name": "Analiese",
+      "name": "Laptop HP",
       "categoryId": 2,
       "price": 461,
-      "url": "http://dummyimage.com/221x112.jpg/dddddd/000000"
+      "des": "HP siêu mỏng giá cực chất",
+      "url": "/images/maytinh/laptop-hp.jpg"
     },
     {
       "id": 53,
-      "name": "Cynthea",
-      "categoryId": 3,
+      "name": "Màn hình cong Sam Sung",
+      "categoryId": 2,
       "price": 735,
-      "url": "http://dummyimage.com/221x112.png/5fa2dd/ffffff"
+      "des": "Màn hình công tiện lợi cho game thủ",
+      "url": "/images/maytinh/man-hinh-cong-sam-sung.jpg"
     },
     {
       "id": 54,
-      "name": "Renate",
-      "categoryId": 4,
+      "name": "Điện thoại Masstel",
+      "categoryId": 2,
       "price": 998,
-      "url": "http://dummyimage.com/221x112.bmp/5fa2dd/ffffff"
+      "des": "Điện thoại đặp đá đa năng",
+      "url": "/images/maytinh/masstel.jpg"
     },
     {
       "id": 55,
-      "name": "Donelle",
-      "categoryId": 1,
+      "name": "Miếng dán bảo vệ bàn phím",
+      "categoryId": 2,
       "price": 502,
-      "url": "http://dummyimage.com/221x112.bmp/5fa2dd/ffffff"
+      "des": "Miếng dán chống bụi",
+      "url": "/images/maytinh/mieng-dan-bao-ve-ban-phim.jpg"
     },
     {
       "id": 56,
-      "name": "Wait",
+      "name": "Nokia",
       "categoryId": 2,
       "price": 511,
-      "url": "http://dummyimage.com/221x112.bmp/dddddd/000000"
+      "des": "Đập gạch bao ngon",
+      "url": "/images/maytinh/nokia.jpg"
     },
     {
       "id": 57,
-      "name": "Claiborn",
-      "categoryId": 3,
+      "name": "Ổ điện",
+      "categoryId": 2,
       "price": 949,
-      "url": "http://dummyimage.com/221x112.bmp/ff4444/ffffff"
+      "des": "Ổ điện tiện dụng, gọn nhẹ",
+      "url": "/images/maytinh/o-dien.jpg"
     },
     {
       "id": 58,
-      "name": "Stormy",
-      "categoryId": 4,
+      "name": "Ổ điện huntkey",
+      "categoryId": 2,
       "price": 550,
-      "url": "http://dummyimage.com/221x112.jpg/cc0000/ffffff"
+      "des": "Ổ điện tiện dụng, gọn nhẹ",
+      "url": "/images/maytinh/o-dien-huntkey.jpg"
     },
     {
       "id": 59,
-      "name": "Willey",
-      "categoryId": 1,
+      "name": "Oppo",
+      "categoryId": 2,
       "price": 556,
-      "url": "http://dummyimage.com/221x112.bmp/5fa2dd/ffffff"
+      "des": "Oppo xu hướng đã củ",
+      "url": "/images/maytinh/oppo.jpeg"
     },
     {
       "id": 60,
-      "name": "Malissa",
+      "name": "Pin laptop apple",
       "categoryId": 2,
       "price": 101,
-      "url": "http://dummyimage.com/221x112.bmp/cc0000/ffffff"
+      "des": "Pin laptop siêu lâu, siêu bền",
+      "url": "/images/maytinh/pin-laptop-apple.jpg"
     },
     {
       "id": 61,
-      "name": "Yorke",
-      "categoryId": 3,
+      "name": "Quạt tản nhiệt",
+      "categoryId": 2,
       "price": 984,
-      "url": "http://dummyimage.com/221x112.jpg/cc0000/ffffff"
+      "des": "Quạt tản nhiệt công suất lớn",
+      "url": "/images/maytinh/quat-tan-nhiet.jpg"
     },
     {
       "id": 62,
-      "name": "Upton",
-      "categoryId": 4,
+      "name": "Ram",
+      "categoryId": 2,
       "price": 502,
-      "url": "http://dummyimage.com/221x112.jpg/ff4444/ffffff"
+      "des": "Ram 8G chất lượng",
+      "url": "/images/maytinh/ram.png"
     },
     {
       "id": 63,
-      "name": "Barbra",
-      "categoryId": 1,
+      "name": "Sam Sung",
+      "categoryId": 2,
       "price": 588,
-      "url": "http://dummyimage.com/221x112.jpg/ff4444/ffffff"
+      "des": "Hãy cảm nhận theo cách của Sam Sung",
+      "url": "/images/maytinh/samsung.jpeg"
     },
     {
       "id": 64,
-      "name": "Chadd",
+      "name": "Smart Keyboard",
       "categoryId": 2,
       "price": 743,
-      "url": "http://dummyimage.com/221x112.bmp/dddddd/000000"
+      "des": "Bàn phím họn nhẹ cho Smart",
+      "url": "/images/maytinh/smart-key.jpg"
     },
     {
       "id": 65,
-      "name": "Godard",
-      "categoryId": 3,
+      "name": "SSD",
+      "categoryId": 2,
       "price": 491,
-      "url": "http://dummyimage.com/221x112.jpg/dddddd/000000"
+      "des": "SSD dung lượng lớn",
+      "url": "/images/maytinh/ssd.jpg"
     },
     {
       "id": 66,
-      "name": "Rosetta",
-      "categoryId": 4,
+      "name": "Microsoft Surface",
+      "categoryId": 2,
       "price": 437,
-      "url": "http://dummyimage.com/221x112.jpg/dddddd/000000"
+      "des": "Surface xu hướng của tương lai",
+      "url": "/images/maytinh/surface.jpg"
     },
     {
       "id": 67,
-      "name": "Gladys",
-      "categoryId": 1,
+      "name": "Tăm lót bàn phím đèn đỏ",
+      "categoryId": 2,
       "price": 496,
-      "url": "http://dummyimage.com/221x112.bmp/5fa2dd/ffffff"
+      "des": "Tiện lợi cho những máy tính không có đèn bàn phím",
+      "url": "/images/maytinh/tam-lot-ban-phim-den-do.jpg"
     },
     {
       "id": 68,
-      "name": "Adolphe",
+      "name": "TP Link",
       "categoryId": 2,
       "price": 871,
-      "url": "http://dummyimage.com/221x112.png/ff4444/ffffff"
+      "des": "TP Link kết nối mau lẹ",
+      "url": "/images/maytinh/tp-link.jpg"
     },
     {
       "id": 69,
-      "name": "Fern",
-      "categoryId": 3,
+      "name": "USB kingstone",
+      "categoryId": 2,
       "price": 644,
-      "url": "http://dummyimage.com/221x112.jpg/5fa2dd/ffffff"
+      "des": "USB dung lọi 1T",
+      "url": "/images/maytinh/usb.jpg"
     },
     {
       "id": 70,
-      "name": "Raquela",
-      "categoryId": 4,
+      "name": "Vell Com",
+      "categoryId": 2,
       "price": 573,
-      "url": "http://dummyimage.com/221x112.png/5fa2dd/ffffff"
+      "des": "Vell com toàn năng",
+      "url": "/images/maytinh/vell-com.jpg"
     },
     {
       "id": 71,
-      "name": "Rhodie",
-      "categoryId": 1,
+      "name": "Bộ dao",
+      "categoryId": 3,
       "price": 155,
-      "url": "http://dummyimage.com/225x237.bmp/cc0000/ffffff"
+      "des": "Bộ dao đủ các loại",
+      "url": "/images/nhacuadoisong/bo-dao.jpg"
     },
     {
       "id": 72,
-      "name": "Guido",
-      "categoryId": 2,
+      "name": "Bộ dụng cụ búi tóc",
+      "categoryId": 3,
       "price": 423,
-      "url": "http://dummyimage.com/221x112.jpg/5fa2dd/ffffff"
+      "des": "Bộ dụng cụ búi tóc đa năng",
+      "url": "/images/nhacuadoisong/bo-dung-cu-bui-toc.jpg"
     },
     {
       "id": 73,
-      "name": "Ignacio",
+      "name": "Đèn led",
       "categoryId": 3,
       "price": 588,
-      "url": "http://dummyimage.com/221x112.png/dddddd/000000"
+      "des": "Đèn led đa năng",
+      "url": "/images/nhacuadoisong/den-led.jpeg"
     },
     {
       "id": 74,
-      "name": "Brady",
-      "categoryId": 4,
+      "name": "Đĩa thủy tinh",
+      "categoryId": 3,
       "price": 462,
-      "url": "http://dummyimage.com/221x112.png/ff4444/ffffff"
+      "des": "Đĩa thủy tinh siêu cứng",
+      "url": "/images/nhacuadoisong/dia-thuy-tinh.jpg"
     },
     {
       "id": 75,
-      "name": "Dennet",
-      "categoryId": 1,
+      "name": "Ghê sofa",
+      "categoryId": 3,
       "price": 220,
-      "url": "http://dummyimage.com/221x112.png/5fa2dd/ffffff"
+      "des": "Ghế sofa gọn nhẹ đa năng",
+      "url": "/images/nhacuadoisong/ghe-sofa.jpg"
     },
     {
       "id": 76,
-      "name": "Thain",
-      "categoryId": 2,
+      "name": "Giá phơi đồ",
+      "categoryId": 3,
       "price": 404,
-      "url": "http://dummyimage.com/221x112.png/dddddd/000000"
+      "des": "Giá phơi rẽ bèo",
+      "url": "/images/nhacuadoisong/gia-phoi-do.jpg"
     },
     {
       "id": 77,
-      "name": "Ester",
+      "name": "Gối cao su",
       "categoryId": 3,
       "price": 581,
-      "url": "http://dummyimage.com/221x112.bmp/5fa2dd/ffffff"
+      "des": "Gối cao su mềm mại",
+      "url": "/images/nhacuadoisong/goi-cao-su.jpg"
     },
     {
       "id": 78,
-      "name": "Ashil",
-      "categoryId": 4,
+      "name": "Hạt giống cà chua",
+      "categoryId": 3,
       "price": 248,
-      "url": "http://dummyimage.com/221x112.png/cc0000/ffffff"
+      "des": "Hạt cà chua theo chuẩn GAP",
+      "url": "/images/nhacuadoisong/hat-giong-ca-chua.jpg"
     },
     {
       "id": 79,
-      "name": "Ferdy",
-      "categoryId": 1,
+      "name": "Kệ nắp",
+      "categoryId": 3,
       "price": 420,
-      "url": "http://dummyimage.com/221x112.bmp/dddddd/000000"
+      "des": "Kệ nắp 2 ngăn",
+      "url": "/images/nhacuadoisong/ke-nap.jpg"
     },
     {
       "id": 80,
-      "name": "Dunc",
-      "categoryId": 2,
+      "name": "Kẹp phòng mái",
+      "categoryId": 4,
       "price": 424,
-      "url": "http://dummyimage.com/221x112.jpg/cc0000/ffffff"
+      "des": "Tạo mái nhanh chóng, chỉ 30s",
+      "url": "/images/thoitrang/kep-phong-mai.jpg"
     },
     {
       "id": 81,
-      "name": "Rocky",
-      "categoryId": 3,
+      "name": "Kẹp tóc ngọc trai",
+      "categoryId": 4,
       "price": 959,
-      "url": "http://dummyimage.com/221x112.bmp/cc0000/ffffff"
+      "des": "Kẹp tóc ngọc trai style quý tộc",
+      "url": "/images/thoitrang/kep-toc-ngoc-trai.jpg"
     },
     {
       "id": 82,
-      "name": "Rickie",
+      "name": "Khắn tắm",
       "categoryId": 4,
       "price": 259,
-      "url": "http://dummyimage.com/221x112.bmp/dddddd/000000"
+      "des": "Khăn tắm siêu thắm, nhúng là thắm",
+      "url": "/images/thoitrang/khan-tam.jpg"
     },
     {
       "id": 83,
-      "name": "Riordan",
-      "categoryId": 1,
+      "name": "Khắn vệ sinh",
+      "categoryId": 4,
       "price": 702,
-      "url": "http://dummyimage.com/221x112.jpg/cc0000/ffffff"
+      "des": "Khắn vệ sinh siêu dày",
+      "url": "/images/thoitrang/khan-ve-sinh.jpg"
     },
     {
       "id": 84,
-      "name": "Sashenka",
-      "categoryId": 2,
+      "name": "Khẩu trang ninja",
+      "categoryId": 4,
       "price": 887,
-      "url": "http://dummyimage.com/221x112.png/dddddd/000000"
+      "des": "Khẩu trang ninja theo phong cách nhật bản",
+      "url": "/images/thoitrang/khau-trang-ninja.jpg"
     },
     {
       "id": 85,
-      "name": "Monte",
-      "categoryId": 3,
+      "name": "Máy đuổi côn trùng",
+      "categoryId": 4,
       "price": 488,
-      "url": "http://dummyimage.com/221x112.bmp/cc0000/ffffff"
+      "des": "Côn trùng bay xa vạn dặm",
+      "url": "/images/thoitrang/may-duoi-con-trung.jpg"
     },
     {
       "id": 86,
-      "name": "Brent",
+      "name": "Nệm cao su",
       "categoryId": 4,
       "price": 267,
-      "url": "http://dummyimage.com/221x112.bmp/cc0000/ffffff"
+      "des": "Nệm cao su mềm mại, nằm là mê",
+      "url": "/images/thoitrang/nem-cao-su.jpeg"
     },
     {
       "id": 87,
-      "name": "Zelma",
-      "categoryId": 1,
+      "name": "Nệm đa năng",
+      "categoryId": 4,
       "price": 843,
-      "url": "http://dummyimage.com/221x112.png/ff4444/ffffff"
+      "des": "Nệm đa năng, năng nào cũng đa",
+      "url": "/images/thoitrang/nem-da-nang.jpeg"
     },
     {
       "id": 88,
-      "name": "Torrie",
-      "categoryId": 2,
+      "name": "Nồi thủy tinh",
+      "categoryId": 4,
       "price": 609,
-      "url": "http://dummyimage.com/221x112.png/ff4444/ffffff"
+      "des": "Nồi thủy tinh siêu cứng",
+      "url": "/images/thoitrang/noi-thuy-tinh.jpg"
     },
     {
       "id": 89,
-      "name": "Dael",
-      "categoryId": 3,
+      "name": "Thìa silicon",
+      "categoryId": 4,
       "price": 358,
-      "url": "http://dummyimage.com/221x112.jpg/cc0000/ffffff"
+      "des": "Thìa silicon siêu bền",
+      "url": "/images/thoitrang/thia-silicon.jpg"
     },
     {
       "id": 90,
-      "name": "Warden",
+      "name": "Vòng cổ choker",
       "categoryId": 4,
       "price": 597,
-      "url": "http://dummyimage.com/221x112.jpg/cc0000/ffffff"
+      "des": "Choker phong cách quý tộc",
+      "url": "/images/thoitrang/vong-co-choker.jpg"
     },
     {
       "id": 91,
-      "name": "Essa",
-      "categoryId": 1,
+      "name": "Vòng tay silicon",
+      "categoryId": 4,
       "price": 660,
-      "url": "http://dummyimage.com/221x112.jpg/ff4444/ffffff"
-    },
-    {
-      "id": 92,
-      "name": "Ulrick",
-      "categoryId": 2,
-      "price": 155,
-      "url": "http://dummyimage.com/221x112.jpg/dddddd/000000"
-    },
-    {
-      "id": 93,
-      "name": "Jeramie",
-      "categoryId": 3,
-      "price": 354,
-      "url": "http://dummyimage.com/221x112.png/5fa2dd/ffffff"
-    },
-    {
-      "id": 94,
-      "name": "Base",
-      "categoryId": 4,
-      "price": 592,
-      "url": "http://dummyimage.com/221x112.jpg/5fa2dd/ffffff"
-    },
-    {
-      "id": 95,
-      "name": "Liana",
-      "categoryId": 1,
-      "price": 126,
-      "url": "http://dummyimage.com/221x112.bmp/cc0000/ffffff"
-    },
-    {
-      "id": 96,
-      "name": "Leoine",
-      "categoryId": 2,
-      "price": 613,
-      "url": "http://dummyimage.com/221x112.jpg/5fa2dd/ffffff"
-    },
-    {
-      "id": 97,
-      "name": "Odelinda",
-      "categoryId": 3,
-      "price": 278,
-      "url": "http://dummyimage.com/221x112.bmp/ff4444/ffffff"
-    },
-    {
-      "id": 98,
-      "name": "Hilton",
-      "categoryId": 4,
-      "price": 800,
-      "url": "http://dummyimage.com/221x112.jpg/5fa2dd/ffffff"
-    },
-    {
-      "id": 99,
-      "name": "Jacqueline",
-      "categoryId": 1,
-      "price": 975,
-      "url": "http://dummyimage.com/221x112.bmp/5fa2dd/ffffff"
-    },
-    {
-      "id": 100,
-      "name": "Coretta",
-      "categoryId": 2,
-      "price": 970,
-      "url": "http://dummyimage.com/221x112.png/ff4444/ffffff"
+      "des": "Vòng tay phong cách quý tộc",
+      "url": "/images/thoitrang/vong-tay-silicon.jpg"
     }
   ],
   "categories": [{
     "id": 1,
-    "name": "Watches"
+    "name": "Điện dụng"
   }, {
     "id": 2,
-    "name": "Hats"
+    "name": "Công nghệ"
   }, {
     "id": 3,
-    "name": "Shoes"
+    "name": "Nhà cửa đời sống"
   }, {
     "id": 4,
-    "name": "Clothes"
+    "name": "Thơi trang"
   }]
 }
