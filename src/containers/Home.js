@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { 
     getCategoriesSuccess,
     getCategoriesError,
-    getAmountCategories,
+    getAmountProduct,
     getProductsSuccess, 
     getProductsError, 
     resetProducts,
@@ -14,6 +14,13 @@ import Product from '../components/product';
 
 
 class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentPage: 1,
+            itemPage: 10
+        }
+    }
     
     componentDidMount() {
 
@@ -21,14 +28,16 @@ class Home extends Component {
             .then(res => this.props.getCategoriesSuccess(res.data))
             .catch(err => this.props.getCategoriesError(err)) 
 
+        API.get('http://localhost:3000/products')
+        .then(res => this.props.getAmountProduct(res.data))
+        .catch(err => err) 
+
         this.props.loading(true);
 
-        API.get('http://localhost:3000/products')
+        API.get(`http://localhost:3000/products?_page=${this.state.currentPage}&_limit=${this.state.itemPage}`)
             .then(res => { 
 
                 this.props.getProductsSuccess(res.data)
-
-                this.props.getAmountCategories(res.data)
 
                 this.props.loading(false);
                     
@@ -39,23 +48,70 @@ class Home extends Component {
         this.props.resetProducts();
     }
 
+    handleClick = (event) => {
+        
+        event.preventDefault();
+
+        this.setState({
+            currentPage: Number(event.target.id)
+        }, 
+        () => {
+            this.props.loading(true);  
+            API.get(`http://localhost:3000/products?_page=${this.state.currentPage}&_limit=${this.state.itemPage}`)
+            .then(res => { 
+                this.props.getProductsSuccess(res.data)
+                this.props.loading(false);  
+            })
+            .catch(err =>  this.props.getProductsError(err))
+        });
+    }
+
     render() {
+        const {products, amounts, error } = this.props; 
+
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(amounts / 10); i++) {
+            pageNumbers.push(i);
+        }
+
+        const renderPageNumbers = pageNumbers.map(number => {
+            return  <li className="page-item" key={number}>
+                        <a className="page-link" href="/" id={number} onClick={this.handleClick}>{number}</a>
+                    </li>
+        })
         return (
             <Fragment>
                 <div className="container">
                     <div className="card-deck">
                         <div className="row">
                         {
-                            this.props.products || this.props.error !== "fails" ? 
+                            products || error !== "fails" ? 
                             (
-                                this.props.products.map(product => {
-                                    return  <Product key={product.id} product = {product}/>
+                                products.map((product) => {
+                                    return <Product key={product.id} product = {product}/>
                                 })
                             )  
-                            : this.props.error
+                            : error
                         }
                         </div>
                     </div>
+                    <nav aria-label="Page navigation example" style={{marginTop: 50}}>
+                        <ul className="pagination" style={{justifyContent: 'center'}}>
+                            <li className="page-item">
+                                <a id='1' onClick={this.handleClick} className="page-link" href="/" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span className="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            {renderPageNumbers}
+                            <li className="page-item">
+                                <a id={pageNumbers[pageNumbers.length - 1]} onClick={this.handleClick} className="page-link" href="/" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span className="sr-only" >Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </Fragment>
         );
@@ -65,6 +121,7 @@ class Home extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         products: state.HomeReducer.products,
+        amounts: state.HomeReducer.amounts,
         error: state.HomeReducer.error,
     }
   }
@@ -72,7 +129,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
     getCategoriesSuccess,
     getCategoriesError,
-    getAmountCategories,
+    getAmountProduct,
     getProductsSuccess,
     getProductsError,
     resetProducts,

@@ -1,5 +1,5 @@
 import { 
-    GET_AMOUNT_CATEGORIES,
+    GET_AMOUNT_PRODUCT,
     GET_PRODUCT_SUCCESS, 
     GET_PRODUCT_ERROR,
     RESET_PRODUCTS,
@@ -16,7 +16,7 @@ const stateInitial = {
 
 const HomeReducer = (state = stateInitial, action) => {
         switch(action.type){
-            case GET_AMOUNT_CATEGORIES:
+            case GET_AMOUNT_PRODUCT:
                     return {...state, amounts: action.amounts}
             case GET_PRODUCT_SUCCESS:
                 return {...state, products: action.products}

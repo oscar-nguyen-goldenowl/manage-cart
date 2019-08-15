@@ -1,4 +1,5 @@
 import { 
+    GET_AMOUNT_CATEGORIES,
     GET_CATEGORIES_SUCCESS,
     GET_CATEGORIES_ERROR,
     GET_PRODUCT_CATEGORY_SUCCESS, 
@@ -16,6 +17,8 @@ const stateInitial = {
 
 const ProductReducer = (state = stateInitial, action) => {
         switch(action.type){
+            case GET_AMOUNT_CATEGORIES:
+                return {...state, amounts: action.amounts}
             case GET_CATEGORIES_SUCCESS:
                 return {...state, categories: action.categories}
             case GET_CATEGORIES_ERROR:
