@@ -6,6 +6,7 @@ import ProductCategory from '../containers/ProductCategory';
 import Loading from '../components/loading';
 import Signin from '../components/signin';
 import Signup from '../components/signup';
+import ProductDetail from '../components/productDetail';
 
 class Routes extends Component {
     render() {
@@ -18,10 +19,11 @@ class Routes extends Component {
                     <Route exact path="/">
                         <Redirect to="home"/>
                     </Route>
+                    <Route path="/signin" component={Signin}/>
+                    <Route path="/signup" component={Signup}/>
+                    <Route path="/products/:slug" component={ProductCategory}/>
+                    <Route path="/detail/:slug" component={ProductDetail}/>
                 </Switch>
-                <Route path="/signin" component={Signin}/>
-                <Route path="/signup" component={Signup}/>
-                <Route path="/products/:slug" component={ProductCategory}/>
             </Fragment>
         );
     }
