@@ -19,10 +19,10 @@ class Routes extends Component {
                     <Route exact path="/">
                         <Redirect to="home"/>
                     </Route>
-                    <Route path="/signin" component={Signin}/>
-                    <Route path="/signup" component={Signup}/>
-                    <Route path="/products/:slug" component={ProductCategory}/>
-                    <Route path="/detail/:slug" component={ProductDetail}/>
+                    <Route exact path="/signin" component={Signin}/>
+                    <Route exact path="/signup" component={Signup}/>
+                    <Route exact path="/products/:slug" component={ProductCategory}/>
+                    <Route exact path="/products/:slug/detail" component={ProductDetail}/>
                 </Switch>
             </Fragment>
         );
