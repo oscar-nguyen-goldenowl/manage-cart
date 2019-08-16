@@ -6,6 +6,8 @@ import {
     getProductDetailError
 } from '../../actions';
 
+import {NavLink} from "react-router-dom";
+
 import "./detail.css";
 
 class ProductDetail extends Component {
@@ -39,7 +41,7 @@ class ProductDetail extends Component {
                                         <button className="btn btn-info mr-2" style={{width: 40}}>-</button>
                                         <input className="form-control text-center" type="text" placeholder="0" style={{width: 70, display: 'inline-block'}}/>
                                         <button className="btn btn-primary ml-2" style={{width: 40}}>+</button>
-                                        <button className="btn btn-warning ml-4">Mua</button>
+                                        <NavLink to="/oscar/cart" className="btn btn-warning ml-4">Mua</NavLink>
                                     </div>
                                 </div>
                             </div>
