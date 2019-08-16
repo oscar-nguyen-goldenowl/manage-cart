@@ -4,6 +4,7 @@ import Product from '../components/product';
 import Pagination from '../components/pagination';
 import * as API from '../api';
 import { 
+    changeSearchStatus,
     getCategoriesSuccess,
     getCategoriesError,
     getAmountCategories,
@@ -23,6 +24,8 @@ class ProductCategory extends Component {
 
     componentDidMount() {
 
+        this.props.changeSearchStatus(true);
+
         API.get('http://localhost:3000/categories')
             .then(res => this.props.getCategoriesSuccess(res.data))
             .catch(err => this.props.getCategoriesError(err)) 
@@ -40,6 +43,7 @@ class ProductCategory extends Component {
     }
 
     componentWillUnmount(){
+        this.props.changeSearchStatus(false);
         this.props.resetProductCategory();
     }
 
@@ -132,6 +136,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 
 const mapDispatchToProps = {
+    changeSearchStatus,
     getCategoriesSuccess,
     getCategoriesError,
     getAmountCategories,

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { 
+    changeSearchStatus,
     getCategoriesSuccess,
     getCategoriesError,
     getAmountProduct,
@@ -25,6 +26,8 @@ class Home extends Component {
     
     componentDidMount() {
 
+        this.props.changeSearchStatus(true);
+
         API.get('http://localhost:3000/categories')
             .then(res => this.props.getCategoriesSuccess(res.data))
             .catch(err => this.props.getCategoriesError(err)) 
@@ -36,6 +39,7 @@ class Home extends Component {
         this.getProductsPagination(this.state.currentPage, this.state.itemPage);  
     }
     componentWillUnmount() {
+        this.props.changeSearchStatus(false);
         this.props.resetProducts();
     }
 
@@ -130,6 +134,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 
 const mapDispatchToProps = {
+    changeSearchStatus,
     getCategoriesSuccess,
     getCategoriesError,
     getAmountProduct,

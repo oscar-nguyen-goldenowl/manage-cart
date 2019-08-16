@@ -18,7 +18,7 @@ const Product = (props) => {
                     </div>
                     <div className="form-group d-flex align-items-center" style={{marginBottom: 0}}>
                         <button className="btn btn-info mr-2" style={{width: 40}}>-</button>
-                        <input className="form-control" type="text" placeholder="0" style={{width: 70, display: 'inline-block'}}/>
+                        <input className="form-control text-center" type="text" placeholder="0" style={{width: 70, display: 'inline-block'}}/>
                         <button className="btn btn-primary ml-2" style={{width: 40}}>+</button>
                         <button className="btn btn-warning ml-4">Mua</button>
                     </div>
