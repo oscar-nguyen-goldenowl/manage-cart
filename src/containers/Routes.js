@@ -6,12 +6,14 @@ import ProductCategory from '../containers/ProductCategory';
 import Loading from '../components/loading';
 import Signin from '../components/signin';
 import Signup from '../components/signup';
+import Search from '../components/search';
 
 class Routes extends Component {
     render() {
         return (
             <Fragment>
                 <Navigation/>
+                <Search/>
                 <Loading/>
                 <Switch>
                     <Route exact path="/home" component={Home}/>
