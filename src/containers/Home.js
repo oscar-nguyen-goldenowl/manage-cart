@@ -28,11 +28,11 @@ class Home extends Component {
 
         this.props.changeSearchStatus(true);
 
-        API.get('http://localhost:3000/categories')
+        API.get('/categories')
             .then(res => this.props.getCategoriesSuccess(res.data))
             .catch(err => this.props.getCategoriesError(err)) 
 
-        API.get('http://localhost:3000/products/count')
+        API.get('/products/count')
         .then(res => this.props.getAmountProduct(res.data))
         .catch(err => err) 
 
@@ -57,7 +57,7 @@ class Home extends Component {
 
     getProductsPagination = (page, limit) => {
         this.props.loading(true);  
-        API.get(`http://localhost:3000/products?_page=${page}&_limit=${limit}`)
+        API.get(`/products?_page=${page}&_limit=${limit}`)
         .then(res => { 
             this.props.getProductsSuccess(res.data)
             this.props.loading(false);  

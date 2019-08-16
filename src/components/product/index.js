@@ -1,7 +1,8 @@
 import React from 'react';
+import {NavLink} from "react-router-dom";
 
 const Product = (props) => {
-    const {name, url, price} = props.product;
+    const {id, name, url, price} = props.product;
     return (
         <div className="col-sm-4 mt-4">
             <div className="card">
@@ -13,7 +14,7 @@ const Product = (props) => {
                             <p className="card-text">${price}</p>
                         </div>
                         <div className="col-sm-8">
-                            <button className="btn btn-secondary ml-2">Detail</button>
+                            <NavLink to={`/products/${id}/detail`} className="btn btn-secondary ml-2">Detail</NavLink>
                         </div>
                     </div>
                     <div className="form-group d-flex align-items-center" style={{marginBottom: 0}}>
