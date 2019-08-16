@@ -63,13 +63,41 @@ class ProductCategory extends Component {
         .catch(err => this.props.getProductCategoryError(err)) 
     }
 
+    sortProduct = (products, search_key) => {
+        if(search_key === 'asc'){
+            products.sort((prevProduct, nextProduct)  => {
+                if (prevProduct.iat < nextProduct.iat) {
+                  return -1;
+                }
+                if (prevProduct.iat > nextProduct.iat) {
+                  return 1;
+                }
+                return 0;
+              });
+        }
+
+        if(search_key === 'desc'){
+            products.sort((prevProduct, nextProduct)  => {
+                if (prevProduct.iat > nextProduct.iat) {
+                  return -1;
+                }
+                if (prevProduct.iat < nextProduct.iat) {
+                  return 1;
+                }
+                return 0;
+              }); 
+        }
+    }
+
     render() {
-        let {products, amounts, error } = this.props; 
+        let { products, amounts, error, search_key } = this.props; 
 
         const pageNumbers = [];
         for (let i = 1; i <= Math.ceil(amounts / 10); i++) {
             pageNumbers.push(i);
         }
+
+        this.sortProduct(products, search_key);
 
         return (
             <Fragment>
@@ -96,6 +124,7 @@ class ProductCategory extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
+        search_key: state.SearchReducer.search_key,
         amounts: state.ProductReducer.amounts,
         products: state.ProductReducer.products,
         error: state.ProductReducer.error
