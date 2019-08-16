@@ -1,8 +1,14 @@
 const jsonServer = require('json-server');
+const jwt = require('jsonwebtoken');
+const fs = require('fs');
+const bcrypt = require('bcrypt');
+const uuidv1 = require('uuid/v1')
 const path = require('path');
 const server = jsonServer.create();
 const router = jsonServer.router(path.resolve(__dirname, './fake-db.json'));
 const middlewares = jsonServer.defaults();
+const SECRET_KEY = 'JS_TEAM_PRO';
+const saltRounds = 10;
 
 server.use(middlewares);
 
@@ -23,6 +29,79 @@ server.post('/session', (req, res) => {
     res.sendStatus(404)
   }
 });
+
+server.post('/auth/sign-up', (req, res) => {
+  const {
+    username,
+    email,
+    password,
+  } = req.body;
+
+  const createdAt = (new Date()).toISOString();
+  const hashedPassword = bcrypt.hashSync(password, saltRounds);
+  const accessKey = uuidv1();
+  const token = jwt.sign({ accessKey }, SECRET_KEY);
+  const data = JSON.parse(fs.readFileSync('./fake-db.json'));
+  const { users } = data;
+  const existedUser = users.find(u => u.email  === email);
+  if (existedUser) {
+    res.status = 422;
+    res.json({
+      error: true,
+      message: 'User existed',
+    });
+  }
+  const newUser = { id: users.length + 1, username, email, password: hashedPassword, accessKey, createdAt };
+  users.push(newUser);
+  data.users = [...users];
+  fs.writeFileSync('./fake-db.json', JSON.stringify(data));
+  delete newUser.accessKey;
+  res.json({
+    token: token,
+    user: newUser,
+  });
+})
+
+server.post('/auth/sign-in', (req, res) => {
+  const {
+    email,
+    password,
+  }
+
+  const data = JSON.parse(fs.readFileSync('./fake-db.json'));
+  const { users } = data;
+  const existedUser = users.find(u => u.email  === email);
+  if (!existedUser) {
+    res.status = 404;
+    res.json({
+      error: true,
+      message: 'Not found'
+    });
+    return;
+  }
+
+  console.log('ehehe');
+  if (!bcrypt.compareSync(password, existedUser.password)) {
+    res.status = 404;
+    res.json({
+      error: true,
+      message: 'Wrong username or password'
+    });
+  }
+
+  const accessKey = uuidv1();
+  const token = jwt.sign({ accessKey }, SECRET_KEY);
+  existedUser.accessKey = accessKey;
+  const indexOfUser = users.findIndex(u => u.email === existedUser.email);
+  users[indexOfUser] = {...existedUser};
+  data.users = [...users];
+  fs.writeFileSync('./fake-db.json', JSON.stringify(data));
+  delete existedUser.accessKey;
+  res.json({
+    token,
+    user: existedUser
+  })
+})
 
 server.get('/products/count', (req, res) => {
   const resData = router.db.get('products').value();
