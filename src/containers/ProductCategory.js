@@ -26,7 +26,7 @@ class ProductCategory extends Component {
 
         this.props.changeSearchStatus(true);
 
-        API.get('http://localhost:3000/categories')
+        API.get('/categories')
             .then(res => this.props.getCategoriesSuccess(res.data))
             .catch(err => this.props.getCategoriesError(err)) 
 
@@ -58,7 +58,7 @@ class ProductCategory extends Component {
 
     getProductsPagination = (productID, page, limit) => {
         this.props.loading(true);  
-        API.get(`http://localhost:3000/categories/${productID}/products?_page=${page}&_limit=${limit}`)
+        API.get(`/categories/${productID}/products?_page=${page}&_limit=${limit}`)
         .then(res => { 
             this.props.getProductCategorySuccess(res.data.products);
             this.props.getAmountCategories(res.data.totalItems); 

@@ -11,7 +11,7 @@ import "./detail.css";
 class ProductDetail extends Component {
     componentDidMount(){
         
-        API.get(`http://localhost:3000/products/${this.props.match.params.slug}`)
+        API.get(`/products/${this.props.match.params.slug}`)
             .then(res => this.props.getProductDetailSuccess(res.data))
             .catch(err => this.props.getProductDetailError(err))
     }
