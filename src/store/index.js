@@ -3,7 +3,8 @@ import {
     HomeReducer, 
     ProductReducer, 
     SearchReducer,
-    ProductDetailReducer
+    ProductDetailReducer,
+    CartReducer,
 } from '../reducers';
 
 
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
     HomeReducer,
     ProductReducer,
     SearchReducer,
-    ProductDetailReducer
+    ProductDetailReducer,
+    CartReducer
 });
 
 

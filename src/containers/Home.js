@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { 
+    addCart,
     changeSearchStatus,
     getCategoriesSuccess,
     getCategoriesError,
@@ -27,7 +28,7 @@ class Home extends Component {
     componentDidMount() {
 
         this.props.changeSearchStatus(true);
-
+    
         API.get('/categories')
             .then(res => this.props.getCategoriesSuccess(res.data))
             .catch(err => this.props.getCategoriesError(err)) 
@@ -92,7 +93,7 @@ class Home extends Component {
     }
 
     render() {
-        const { products, amounts, error, search_key } = this.props;
+        const { products, amounts, error, search_key, addCart } = this.props;
 
         const pageNumbers = [];
         for (let i = 1; i <= Math.ceil(amounts / 10); i++) {
@@ -110,7 +111,7 @@ class Home extends Component {
                             products && products.length ? 
                             (
                                 products.map((product) => {
-                                    return <Product key={product.id} product = {product}/>
+                                    return <Product key={product.id} product = {product} addCart = {addCart}/>
                                 })
                             )  
                             : error
@@ -134,6 +135,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 
 const mapDispatchToProps = {
+    addCart,
     changeSearchStatus,
     getCategoriesSuccess,
     getCategoriesError,

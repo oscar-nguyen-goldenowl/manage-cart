@@ -4,6 +4,7 @@ import Product from '../components/product';
 import Pagination from '../components/pagination';
 import * as API from '../api';
 import { 
+    addCart,
     changeSearchStatus,
     getCategoriesSuccess,
     getCategoriesError,
@@ -94,7 +95,7 @@ class ProductCategory extends Component {
     }
 
     render() {
-        let { products, amounts, error, search_key } = this.props; 
+        let { products, amounts, error, search_key, addCart } = this.props; 
 
         const pageNumbers = [];
         for (let i = 1; i <= Math.ceil(amounts / 10); i++) {
@@ -112,7 +113,7 @@ class ProductCategory extends Component {
                                 products && products.length ? 
                                     (
                                         products.map((product) => {
-                                            return <Product key={product.id} product = {product}/>
+                                            return <Product key={product.id} product = {product} addCart = {addCart}/>
                                         })
                                     )  
                                 : error
@@ -136,6 +137,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 
 const mapDispatchToProps = {
+    addCart,
     changeSearchStatus,
     getCategoriesSuccess,
     getCategoriesError,

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import * as API from '../../api';
 import {
+    addCart,
     getProductDetailSuccess,
     getProductDetailError
 } from '../../actions';
@@ -11,14 +12,59 @@ import {NavLink} from "react-router-dom";
 import "./detail.css";
 
 class ProductDetail extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        amounts: 0
+      }
+    }
     componentDidMount(){
         
         API.get(`/products/${this.props.match.params.slug}`)
             .then(res => this.props.getProductDetailSuccess(res.data))
             .catch(err => this.props.getProductDetailError(err))
     }
+
+    handleChange = (event) => {
+      this.setState({
+        amounts: event.target.value
+      }, 
+      () => {
+        if(isNaN(this.state.amounts)){
+          this.setState({
+            amounts: 0
+          });  
+        }
+      });
+    }
+  
+    increaseAmount = () => {
+      this.setState({
+        amounts: this.state.amounts + 1
+      });
+    }
+    decreaseAmount = () => {
+      this.state.amounts !== 0 ? this.setState({amounts: this.state.amounts - 1}) : this.setState({amounts: 0})
+    }
+
+    addCart = (product) => {
+      const cart = {
+        id: product.id,
+        product,
+        amounts: this.state.amounts
+      }
+      if(this.state.amounts !== 0){
+        this.props.addCart(cart);
+      }else{
+        alert("Số lượng phải > 0")
+        return;
+      }
+    }
+
     render() {
+        const {product} = this.props;
         const {name, price, des, url} = this.props.product;
+        const {amounts} = this.state;
         
         return (
             <div className="detail">
@@ -38,10 +84,10 @@ class ProductDetail extends Component {
                             <div className="row">
                                 <div className="col-sm-12">
                                     <div className="form-group d-flex align-items-center" style={{marginBottom: 0}}>
-                                        <button className="btn btn-info mr-2" style={{width: 40}}>-</button>
-                                        <input className="form-control text-center" type="text" placeholder="0" style={{width: 70, display: 'inline-block'}}/>
-                                        <button className="btn btn-primary ml-2" style={{width: 40}}>+</button>
-                                        <NavLink to="/oscar/cart" className="btn btn-warning ml-4">Mua</NavLink>
+                                        <button onClick={this.decreaseAmount} className="btn btn-info mr-2" style={{width: 40}}>-</button>
+                                        <input onChange={this.handleChange} value={amounts} className="form-control text-center" type="text" placeholder="0" style={{width: 70, display: 'inline-block'}}/>
+                                        <button onClick={this.increaseAmount} className="btn btn-primary ml-2" style={{width: 40}}>+</button>
+                                        <button onClick={() => this.addCart(product)} className="btn btn-warning ml-4">Mua</button>
                                     </div>
                                 </div>
                             </div>
@@ -55,11 +101,12 @@ class ProductDetail extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        product: state.ProductDetailReducer.product
+      product: state.ProductDetailReducer.product
     }
   }
 
 const mapDispatchToProps = {
+    addCart,
     getProductDetailSuccess,
     getProductDetailError
 }

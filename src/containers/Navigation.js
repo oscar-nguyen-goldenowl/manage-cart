@@ -31,8 +31,9 @@ class Navigation extends Component {
                         </li>
                     </ul>
                     <div className="form-inline my-2 my-lg-0">
-                        <NavLink to="/signin" className="btn btn-outline-success my-2 my-sm-0 text-white" >Sign in</NavLink>
-                        <NavLink to="/signup" className="btn btn-outline-success my-2 my-sm-0 ml-4 text-white" >Sign up</NavLink>
+                      <NavLink to="/oscar/cart" className="btn btn-outline-success my-2 my-sm-0 ml-4 text-white" >Cart</NavLink>
+                      <NavLink to="/signin" className="btn btn-outline-success my-2 my-sm-0 text-white" >Sign in</NavLink>
+                      <NavLink to="/signup" className="btn btn-outline-success my-2 my-sm-0 ml-4 text-white" >Sign up</NavLink>
                     </div>
                 </div>
             </nav>
