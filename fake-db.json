@@ -792,17 +792,33 @@
       "iat": 1565921893
     }
   ],
-  "categories": [{
-    "id": 1,
-    "name": "Điện dụng"
-  }, {
-    "id": 2,
-    "name": "Công nghệ"
-  }, {
-    "id": 3,
-    "name": "Nhà cửa đời sống"
-  }, {
-    "id": 4,
-    "name": "Thơi trang"
-  }]
+  "categories": [
+    {
+      "id": 1,
+      "name": "Điện dụng"
+    },
+    {
+      "id": 2,
+      "name": "Công nghệ"
+    },
+    {
+      "id": 3,
+      "name": "Nhà cửa đời sống"
+    },
+    {
+      "id": 4,
+      "name": "Thơi trang"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "testing",
+      "email": "testing@testor.com",
+      "password": "$2b$10$KExvAg.kPyxYOS6VB/C7Kuwi0l9D9fSiliBjV1O7tcqbFGkxRRaq2",
+      "accessKey": "2f3c07a0-c00a-11e9-ad3b-3be8e7c75912",
+      "createdAt": "2019-08-16T09:42:38.544Z"
+    }
+  ],
+  "orders": []
 }
