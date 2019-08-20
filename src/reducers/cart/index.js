@@ -4,7 +4,6 @@ import {
   PAY_CART,
   GET_AMOUNTS
 } from '../../actions';
-import { statements } from '@babel/template';
 
 const stateInitial = {
   // my state
