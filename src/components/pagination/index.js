@@ -3,7 +3,12 @@ import './pagination.css';
 
 class Pagination extends Component {
     render() {
-        const {pageNumbers, handleClick} = this.props;
+        const {amountProducts, handleClick} = this.props;
+
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(amountProducts / 10); i++) {
+            pageNumbers.push(i);
+        }
         
         const renderPageNumbers = pageNumbers.map(number => {
             return  <li className="page-item" key={number}>

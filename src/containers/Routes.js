@@ -1,16 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch, Redirect} from 'react-router-dom';
-import Home from './Home';
-import Navigation from './Navigation';
-import ProductCategory from './ProductCategory';
-import Carts from './Carts';
+import Home from './home/Home';
+import Navigation from './navigation/Navigation';
+import ProductCategory from './productCategory/ProductCategory';
+import Carts from './Carts/Carts';
+import ProductDetail from './productDetail';
 import Loading from '../components/loading';
 import Signin from '../components/signin';
 import Signup from '../components/signup';
-import ProductDetail from '../components/productDetail';
-import Sort from '../components/sort';
-import Search from '../components/search';
-
 
 class Routes extends Component {
     render() {
@@ -18,12 +15,6 @@ class Routes extends Component {
             <Fragment>
                 <Loading/>
                 <Navigation/>
-                <div className="container mt-4">
-                  <div className="row">
-                    <Sort/>
-                    <Search/>
-                  </div>
-                </div>
                 <Switch>
                     <Route exact path="/home" component={Home}/>
                     <Route exact path="/">

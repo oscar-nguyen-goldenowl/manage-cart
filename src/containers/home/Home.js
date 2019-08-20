@@ -1,21 +1,20 @@
 import React, { Component, Fragment } from 'react';
+import Sort from '../../components/sort';
+import Search from '../../components/search';
 import { connect } from 'react-redux';
 import { 
     addCart,
-    getSearchKey,
-    changeSearchStatus,
-    changeSortStatus,
     getCategoriesSuccess,
     getCategoriesError,
     getAmountProduct,
     getProductsSuccess, 
     getProductsError, 
     resetProducts,
-    loading } from '../actions';
-import * as API from '../api';
+    loading } from '../../actions';
+import * as API from '../../api';
 
-import Product from '../components/product';
-import Pagination from '../components/pagination';
+import Product from '../../components/product';
+import Pagination from '../../components/pagination';
 
 
 class Home extends Component {
@@ -23,14 +22,13 @@ class Home extends Component {
         super(props);
         this.state = {
             currentPage: 1,
-            itemPage: 10
+            itemPage: 10,
+            sort_key: '',
+            search_key: ''
         }
     }
     
     componentDidMount() {
-
-        this.props.changeSortStatus(true);
-        this.props.changeSearchStatus(true);
     
         API.get('/categories')
             .then(res => this.props.getCategoriesSuccess(res.data))
@@ -43,9 +41,6 @@ class Home extends Component {
         this.getProductsPagination(this.state.currentPage, this.state.itemPage);  
     }
     componentWillUnmount() {
-        this.props.changeSortStatus(false);
-        this.props.changeSearchStatus(false);
-        this.props.getSearchKey("");
         this.props.resetProducts();
     }
 
@@ -83,6 +78,12 @@ class Home extends Component {
         .catch(err =>  this.props.getProductsError(err))
     }
 
+    getSortKey = (sort_key) => {      
+      this.setState({
+        sort_key
+      });
+    }
+
     sortProduct = (products, sort_key) => {
         if(sort_key === 'asc'){
             products.sort((prevProduct, nextProduct)  => {
@@ -109,6 +110,12 @@ class Home extends Component {
         }
     }
 
+    getSearchKey = (search_key) => {    
+      this.setState({
+        search_key
+      });
+    }
+
     searchProduct = (products, search_key) => {
       const tempProducts = [];
       products && products.length && products.forEach(product => {
@@ -120,13 +127,9 @@ class Home extends Component {
     }
 
     render() {
-        let { products, amounts, error, sort_key, search_key, addCart } = this.props;
-
-        const pageNumbers = [];
-        for (let i = 1; i <= Math.ceil(amounts / 10); i++) {
-            pageNumbers.push(i);
-        }
-        
+        let { products, amounts, error, addCart } = this.props;
+        const {sort_key, search_key} = this.state;
+              
         this.sortProduct(products, sort_key);
 
         if(this.searchProduct(products, search_key && this.searchProduct(products, search_key))){
@@ -135,22 +138,28 @@ class Home extends Component {
 
         return (
             <Fragment>
-                <div className="container">
-                    <div className="card-deck">
-                        <div className="row" style={{width: '100%'}}>
-                        {
-                            products && products.length ? 
-                            (
-                                products.map((product) => {
-                                    return <Product key={product.id} product = {product} addCart = {addCart}/>
-                                })
-                            )  
-                            : error
-                        }
-                        </div>
-                    </div>
-                    <Pagination pageNumbers={pageNumbers}  handleClick={this.handleClick}/>
+              <div className="container mt-4">
+                <div className="row">
+                  <Sort getSortKey = {this.getSortKey}/>
+                  <Search getSearchKey = {this.getSearchKey}/>
                 </div>
+              </div>
+              <div className="container">
+                  <div className="card-deck">
+                      <div className="row" style={{width: '100%'}}>
+                      {
+                          products && products.length ? 
+                          (
+                              products.map((product) => {
+                                  return <Product key={product.id} product = {product} addCart = {addCart}/>
+                              })
+                          )  
+                          : error
+                      }
+                      </div>
+                  </div>
+                  <Pagination amountProducts={amounts}  handleClick={this.handleClick}/>
+              </div>
             </Fragment>
         );
     }
@@ -158,8 +167,6 @@ class Home extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        search_key: state.SearchReducer.search_key,
-        sort_key: state.SortReducer.sort_key,
         products: state.HomeReducer.products,
         amounts: state.HomeReducer.amounts,
         error: state.HomeReducer.error,
@@ -168,9 +175,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
     addCart,
-    getSearchKey,
-    changeSearchStatus,
-    changeSortStatus,
     getCategoriesSuccess,
     getCategoriesError,
     getAmountProduct,

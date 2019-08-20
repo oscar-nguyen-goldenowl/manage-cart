@@ -1,34 +1,32 @@
 import React, { Component, Fragment } from 'react';
+import Sort from '../../components/sort';
+import Search from '../../components/search';
 import {connect} from 'react-redux';
-import Product from '../components/product';
-import Pagination from '../components/pagination';
-import * as API from '../api';
+import Product from '../../components/product';
+import Pagination from '../../components/pagination';
+import * as API from '../../api';
 import { 
     addCart,
-    getSearchKey,
-    changeSearchStatus,
-    changeSortStatus,
     getCategoriesSuccess,
     getCategoriesError,
     getAmountCategories,
     getProductCategorySuccess, 
     getProductCategoryError, 
     resetProductCategory,
-    loading } from '../actions';
+    loading } from '../../actions';
 
 class ProductCategory extends Component {
     constructor(props) {
         super(props);
         this.state = {
             currentPage: 1,
-            itemPage: 10
+            itemPage: 10,
+            sort_key: '',
+            search_key: ''
         }
     }
 
     componentDidMount() {
-
-        this.props.changeSortStatus(true);
-        this.props.changeSearchStatus(true);
 
         API.get('/categories')
             .then(res => this.props.getCategoriesSuccess(res.data))
@@ -41,17 +39,9 @@ class ProductCategory extends Component {
     componentWillReceiveProps(nextProps){
         if(nextProps.match.params.slug !== this.props.match.params.slug){
 
-          this.props.getSearchKey("");
-
           this.getProductsPagination(nextProps.match.params.slug, this.state.currentPage, this.state.itemPage);
 
         }
-    }
-
-    componentWillUnmount(){
-        this.props.changeSortStatus(false);
-        this.props.changeSearchStatus(false);
-        this.props.getSearchKey("");
     }
 
     handleClick = (event) => {
@@ -87,6 +77,12 @@ class ProductCategory extends Component {
         .catch(err => this.props.getProductCategoryError(err)) 
     }
 
+    getSortKey = (sort_key) => {      
+      this.setState({
+        sort_key
+      });
+    }
+
     sortProduct = (products, sort_key) => {
         if(sort_key === 'asc'){
             products.sort((prevProduct, nextProduct)  => {
@@ -113,6 +109,12 @@ class ProductCategory extends Component {
         }
     }
 
+    getSearchKey = (search_key) => {    
+      this.setState({
+        search_key
+      });
+    }
+
     searchProduct = (products, search_key) => {
       const tempProducts = [];
       products && products.length && products.forEach(product => {
@@ -124,12 +126,8 @@ class ProductCategory extends Component {
     }
 
     render() {
-        let {categories, products, amounts, error, search_key, sort_key, addCart } = this.props; 
-      
-        const pageNumbers = [];
-        for (let i = 1; i <= Math.ceil(amounts / 10); i++) {
-            pageNumbers.push(i);
-        }
+        let {categories, products, amounts, error, addCart } = this.props; 
+        const {sort_key, search_key} = this.state;
 
         this.sortProduct(products, sort_key);
 
@@ -139,28 +137,34 @@ class ProductCategory extends Component {
 
         return (
             <Fragment>
-                <div className="container">
-                    <div className="card-deck">
-                        <h1 className="text-center mt-4" style={{width: '100%'}}>
-                          Product by Category &nbsp;
-                          {
-                            categories && categories.length && categories.find(category => category.id === parseInt(this.props.match.params.slug)).name
-                          }
-                        </h1>
-                        <div className="row" style={{width: '100%'}}>
-                        {
-                                products && products.length ? 
-                                    (
-                                        products.map((product) => {
-                                            return <Product key={product.id} product = {product} addCart = {addCart}/>
-                                        })
-                                    )  
-                                : error
-                        }
-                        </div>
-                    </div>
-                    <Pagination pageNumbers={pageNumbers}  handleClick={this.handleClick}/>
+              <div className="container mt-4">
+                <div className="row">
+                  <Sort getSortKey = {this.getSortKey}/>
+                  <Search getSearchKey = {this.getSearchKey}/>
                 </div>
+              </div>
+              <div className="container">
+                  <div className="card-deck">
+                      <h1 className="text-center mt-4" style={{width: '100%'}}>
+                        Product by Category &nbsp;
+                        {
+                          categories && categories.length && categories.find(category => category.id === parseInt(this.props.match.params.slug)).name
+                        }
+                      </h1>
+                      <div className="row" style={{width: '100%'}}>
+                      {
+                              products && products.length ? 
+                                  (
+                                      products.map((product) => {
+                                          return <Product key={product.id} product = {product} addCart = {addCart}/>
+                                      })
+                                  )  
+                              : error
+                      }
+                      </div>
+                  </div>
+                  <Pagination amountProducts={amounts}  handleClick={this.handleClick}/>
+              </div>
             </Fragment>
         );
     }
@@ -169,7 +173,6 @@ class ProductCategory extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         search_key: state.SearchReducer.search_key,
-        sort_key: state.SortReducer.sort_key,
         amounts: state.ProductReducer.amounts,
         products: state.ProductReducer.products,
         categories: state.ProductReducer.categories,
@@ -179,9 +182,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
     addCart,
-    getSearchKey,
-    changeSearchStatus,
-    changeSortStatus,
     getCategoriesSuccess,
     getCategoriesError,
     getAmountCategories,

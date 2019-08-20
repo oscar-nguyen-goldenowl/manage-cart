@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import {connect}from 'react-redux';
-import Cart from '../components/cart';
-import Pagination from '../components/pagination';
+import Cart from '../../components/cart';
+import Pagination from '../../components/pagination';
 
 import {
   deleteCart,
-  payCart
-} from '../actions';
+  payCart,
+  getAmounts
+} from '../../actions';
 
 
 class Carts extends Component {
   render() {
-    const { totalPrice, carts, deleteCart, payCart } = this.props;
+    const { totalPrice, carts, getAmounts, deleteCart, payCart } = this.props;
     
     return (
       <div className="container">
@@ -32,6 +33,7 @@ class Carts extends Component {
                   carts && carts.length ? carts.map(cart => <Cart 
                                                                   key={cart.product.id} 
                                                                   cart={cart}
+                                                                  getAmounts={getAmounts}
                                                                   deleteCart = {deleteCart}/>) : null
                 }
                 <tr>
@@ -57,7 +59,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
   deleteCart,
-  payCart
+  payCart,
+  getAmounts
 }
 
 export default connect( mapStateToProps, mapDispatchToProps )(Carts);

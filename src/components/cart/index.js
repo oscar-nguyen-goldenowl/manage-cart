@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-
-import {
-  getAmounts
-} from '../../actions';
 
 class Cart extends Component {
   constructor(props) {
@@ -72,14 +67,4 @@ class Cart extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    
-  }
-}
-
-const mapDispatchToProps = {
-  getAmounts
-}
-
-export default connect( mapStateToProps, mapDispatchToProps )(Cart);
+export default Cart;
