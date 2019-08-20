@@ -172,7 +172,6 @@ class ProductCategory extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        search_key: state.SearchReducer.search_key,
         amounts: state.ProductReducer.amounts,
         products: state.ProductReducer.products,
         categories: state.ProductReducer.categories,

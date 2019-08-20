@@ -1,21 +1,17 @@
 import { combineReducers, createStore } from 'redux';
 import {
     HomeReducer, 
-    ProductReducer, 
-    SortReducer,
+    ProductReducer,
     ProductDetailReducer,
     CartReducer,
-    SearchReducer
 } from '../reducers';
 
 
 const rootReducer = combineReducers({
     HomeReducer,
     ProductReducer,
-    SortReducer,
     ProductDetailReducer,
     CartReducer,
-    SearchReducer
 });
 
 

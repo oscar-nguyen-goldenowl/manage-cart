@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {connect}from 'react-redux';
 import Cart from '../../components/cart';
-import Pagination from '../../components/pagination';
 
 import {
   deleteCart,
@@ -44,7 +43,6 @@ class Carts extends Component {
               </tr>
               </tbody>
           </table>
-          {/* <Pagination pageNumbers={pageNumbers}  handleClick={this.handleClick}/> */}
       </div>
     );
   }

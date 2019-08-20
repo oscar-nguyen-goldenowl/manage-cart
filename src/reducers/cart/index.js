@@ -67,7 +67,7 @@ const CartReducer = (state = stateInitial, action) => {
         state.carts.forEach(cart => {
           state.totalItem +=  cart.amounts
         });
-        return {... state}
+        return {...state}
 
       default :
         return state
