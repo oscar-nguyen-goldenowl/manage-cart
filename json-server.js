@@ -10,25 +10,64 @@ const middlewares = jsonServer.defaults();
 const SECRET_KEY = 'JS_TEAM_PRO';
 const saltRounds = 10;
 
+const protectedRoutes = [
+  '/profile',
+  '/orders',
+];
+
+const authenticationMiddleware = (req, res, next) => {
+  if (protectedRoutes.includes(req.url)) {
+    const token = req.headers['Authorization'] || req.headers['authorization'];
+
+    if (!token) {
+      res.status = 401;
+      res.json({
+        error: true,
+        message: 'Not Authorization'
+      });
+      return;
+    }
+
+    const data = JSON.parse(fs.readFileSync('./fake-db.json'));
+    const { users } = data;
+    const decoded = jwt.decode(token);
+    const accessKey = decoded ? decoded.accessKey : null;
+
+    if (!accessKey) {
+      res.status = 401;
+      res.json({
+        error: true,
+        message: 'Not Authentication',
+      });
+      return;
+    }
+    const existedUser = users.find(u => u.accessKey  === accessKey);
+
+    if (!existedUser) {
+      res.status = 404;
+      res.json({
+        error: true,
+        message: 'Not found!',
+      });
+      return;
+    }
+
+    delete existedUser.password;
+    delete existedUser.accessKey;
+
+    req.user = {...existedUser}
+    next();
+  } else {
+    next();
+  }
+}
+
 server.use(middlewares);
+server.use(authenticationMiddleware);
 
 // To handle POST, PUT and PATCH you need to use a body-parser
 // You can use the one used by JSON Server
 server.use(jsonServer.bodyParser);
-
-// Add custom routes before JSON Server router
-server.post('/session', (req, res) => {
-  const { email } = req.body;
-  const resData = router.db
-    .get('session')
-    .find({ email: email })
-    .value();
-  if (resData) {
-    res.json(resData)
-  } else {
-    res.sendStatus(404)
-  }
-});
 
 server.post('/auth/sign-up', (req, res) => {
   const {
@@ -56,21 +95,23 @@ server.post('/auth/sign-up', (req, res) => {
   data.users = [...users];
   fs.writeFileSync('./fake-db.json', JSON.stringify(data));
   delete newUser.accessKey;
+  delete newUser.password;
   res.json({
     token: token,
     user: newUser,
   });
-})
+});
 
 server.post('/auth/sign-in', (req, res) => {
   const {
     email,
     password,
-  }
+  } = req.body;
 
   const data = JSON.parse(fs.readFileSync('./fake-db.json'));
   const { users } = data;
   const existedUser = users.find(u => u.email  === email);
+
   if (!existedUser) {
     res.status = 404;
     res.json({
@@ -80,13 +121,13 @@ server.post('/auth/sign-in', (req, res) => {
     return;
   }
 
-  console.log('ehehe');
   if (!bcrypt.compareSync(password, existedUser.password)) {
     res.status = 404;
     res.json({
       error: true,
       message: 'Wrong username or password'
     });
+    return;
   }
 
   const accessKey = uuidv1();
@@ -97,10 +138,11 @@ server.post('/auth/sign-in', (req, res) => {
   data.users = [...users];
   fs.writeFileSync('./fake-db.json', JSON.stringify(data));
   delete existedUser.accessKey;
+  delete existedUser.password;
   res.json({
     token,
     user: existedUser
-  })
+  });
 })
 
 server.get('/products/count', (req, res) => {
@@ -136,7 +178,11 @@ server.get('/categories/:catId/products', (req, res) => {
         page: _page,
         limit: _limit
     })
-})
+});
+
+server.get('/profile', (req, res, next) => {
+  res.json({text: 'hello'});
+});
 
 server.use(router);
 server.listen(3000, () => {
