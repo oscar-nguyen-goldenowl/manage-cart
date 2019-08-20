@@ -25,7 +25,7 @@ class Sort extends Component {
         const { sort_status } = this.props;
         return (
           sort_status ?
-                <div className="col-sm-6">
+                <div className="col-sm-3">
                   <div className="input-group align-items-center">
                       <label style={{marginBottom: 0}} className="mr-2">Sort by:</label>
                       <select className="custom-select" onChange={this.handleSearch}>

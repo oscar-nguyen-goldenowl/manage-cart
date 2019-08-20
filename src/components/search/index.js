@@ -29,7 +29,7 @@ class Search extends Component {
     const {search_key, search_status} = this.props;
     
     return (
-      search_status ? <div className="col-sm-6" style={{margin: 0, padding: 0}}>
+      search_status ? <div className="col-sm-9" style={{margin: 0, padding: 0}}>
                           <div className="input-group">
                             <input onChange={this.handleChange} value={search_key} type="text" className="form-control" placeholder="search key..."/>
                           </div>
