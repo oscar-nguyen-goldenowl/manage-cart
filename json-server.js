@@ -45,8 +45,8 @@ server.get('/categories/:catId/products', (req, res) => {
         _page = 1;
     }
 
-    const start = (_page - 1) * _limit;
-    const end = start + _limit;
+    const start = (+_page - 1) * +_limit;
+    const end = (+start) + (+_limit);
     const products = router.db.get('products').filter({ categoryId: +catId }).value();
     const totalItems = products.length;
     products.splice(end);
