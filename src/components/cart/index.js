@@ -19,11 +19,13 @@ class Cart extends Component {
       amounts: event.target.value
     }, 
     () => {
+
       if(isNaN(this.state.amounts)){
         this.setState({
           amounts: 0
         });  
       }
+      this.props.getAmounts(this.props.cart.id, +this.state.amounts)
     });
   }
 

@@ -48,17 +48,17 @@ class Home extends Component {
 
         event.preventDefault();
 
-        // selected for pagination : start
-        let tagAllPagination = event.target.parentElement.parentElement.childNodes;
-        let prevPagination = event.target.parentElement;      
+        // // selected for pagination : start
+        // let tagAllPagination = event.target.parentElement.parentElement.childNodes;
+        // let prevPagination = event.target.parentElement;      
         
-        tagAllPagination.forEach(tag => {
-          tag.classList.remove('active-pagination')
-        });
+        // tagAllPagination.forEach(tag => {
+        //   tag.classList.remove('active-pagination')
+        // });
 
-        prevPagination.classList.toggle('active-pagination')
+        // prevPagination.classList.toggle('active-pagination')
 
-        // selected for pagination : end
+        // // selected for pagination : end
 
         this.setState({
             currentPage: Number(event.target.id)
@@ -95,6 +95,7 @@ class Home extends Component {
                 }
                 return 0;
               });
+            return products;
         }
 
         if(sort_key === 'desc'){
@@ -107,7 +108,10 @@ class Home extends Component {
                 }
                 return 0;
               }); 
+          return products;
         }
+
+        return products;
     }
 
     getSearchKey = (search_key) => {    
@@ -117,24 +121,19 @@ class Home extends Component {
     }
 
     searchProduct = (products, search_key) => {
-      const tempProducts = [];
-      products && products.length && products.forEach(product => {
-        if(product.name.match(search_key)){
-          tempProducts.push(product);
-        }
-      });
-      return tempProducts;
+      return (products || []).reduce((result, prod) => prod.name.toLowerCase().match(search_key.toLowerCase()) ? [...result, prod] : [...result], []);
     }
 
     render() {
         let { products, amounts, error, addCart } = this.props;
         const {sort_key, search_key} = this.state;
               
-        this.sortProduct(products, sort_key);
 
-        if(this.searchProduct(products, search_key && this.searchProduct(products, search_key))){
-          products = this.searchProduct(products, search_key) 
-        }
+        // products bt search
+        products = this.searchProduct(products, search_key)
+
+        // products bt sort
+        products =  this.sortProduct(products, sort_key);
 
         return (
             <Fragment>

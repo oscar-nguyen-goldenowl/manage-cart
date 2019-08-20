@@ -38,27 +38,13 @@ class ProductCategory extends Component {
     // take event change params of router
     componentWillReceiveProps(nextProps){
         if(nextProps.match.params.slug !== this.props.match.params.slug){
-
           this.getProductsPagination(nextProps.match.params.slug, this.state.currentPage, this.state.itemPage);
-
         }
     }
 
     handleClick = (event) => {
         event.preventDefault();
 
-        // selected for pagination : start
-        let tagAllPagination = event.target.parentElement.parentElement.childNodes;
-        let prevPagination = event.target.parentElement;      
-        
-        tagAllPagination.forEach(tag => {
-          tag.classList.remove('active-pagination')
-        });
-
-        prevPagination.classList.toggle('active-pagination')
-        // selected for pagination : end
-
-        
         this.setState({
             currentPage: Number(event.target.id)
         },() => {
@@ -94,6 +80,7 @@ class ProductCategory extends Component {
                 }
                 return 0;
               });
+          return products;
         }
 
         if(sort_key === 'desc'){
@@ -105,8 +92,11 @@ class ProductCategory extends Component {
                   return 1;
                 }
                 return 0;
-              }); 
+            }); 
+          return products;
         }
+
+        return products;
     }
 
     getSearchKey = (search_key) => {    
@@ -116,24 +106,35 @@ class ProductCategory extends Component {
     }
 
     searchProduct = (products, search_key) => {
-      const tempProducts = [];
-      products && products.length && products.forEach(product => {
-        if(product.name.match(search_key)){
-          tempProducts.push(product);
-        }
-      });
-      return tempProducts;
+      // const tempProducts = [];
+      // products && products.length && products.forEach(product => {
+      //   if(product.name.match(search_key)){
+      //     tempProducts.push(product);
+      //   }
+      // });
+      // return tempProducts;
+
+      // Solution 1
+      // return (products || []).reduce((result, prod) => {
+      //   if (prod.name.match(search_key)) {
+      //     result.push(prod);
+      //   }
+      //   return result;
+      // }, []);
+
+      // Solution 2
+      return (products || []).reduce((result, prod) => prod.name.match(search_key) ? [...result, prod] : [...result], []);
     }
 
     render() {
         let {categories, products, amounts, error, addCart } = this.props; 
         const {sort_key, search_key} = this.state;
 
-        this.sortProduct(products, sort_key);
+        // products bt search
+        products = this.searchProduct(products, search_key)
 
-        if(this.searchProduct(products, search_key && this.searchProduct(products, search_key))){
-          products = this.searchProduct(products, search_key) 
-        }
+        // products bt sort
+        products =  this.sortProduct(products, sort_key);
 
         return (
             <Fragment>
@@ -153,13 +154,13 @@ class ProductCategory extends Component {
                       </h1>
                       <div className="row" style={{width: '100%'}}>
                       {
-                              products && products.length ? 
-                                  (
-                                      products.map((product) => {
-                                          return <Product key={product.id} product = {product} addCart = {addCart}/>
-                                      })
-                                  )  
-                              : error
+                        products && products.length ? 
+                            (
+                                products.map((product) => {
+                                    return <Product key={product.id} product = {product} addCart = {addCart}/>
+                                })
+                            )  
+                        : error
                       }
                       </div>
                   </div>
