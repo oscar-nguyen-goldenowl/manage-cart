@@ -35,7 +35,7 @@ class Carts extends Component {
                                                                   deleteCart = {deleteCart}/>) : null
                 }
                 <tr>
-                  <td colSpan={6} style={{verticalAlign: 'middle'}} className="text-center">
+                  <td colSpan={6} style={{verticalAlign: 'middle'}} className="text-right">
                     <span>Total: {totalPrice}</span>
                     <button onClick={payCart} className="btn btn-info ml-4">Thanh toán</button>
                   </td>

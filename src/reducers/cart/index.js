@@ -8,7 +8,8 @@ import {
 const stateInitial = {
   // my state
   carts: [],
-  totalPrice: 0
+  totalPrice: 0,
+  totalItem: 0
 }
 
 const CartReducer = (state = stateInitial, action) => {
@@ -22,6 +23,11 @@ const CartReducer = (state = stateInitial, action) => {
           // cart is not exist in Carts
           state.carts.push(action.cart)
         }
+
+        state.totalItem = 0;
+        state.carts.forEach(cart => {
+          state.totalItem +=  cart.amounts
+        });
 
         state.totalPrice = 0;
         state.carts.forEach(cart => {
@@ -37,11 +43,17 @@ const CartReducer = (state = stateInitial, action) => {
           }
         });
 
+        state.carts.forEach(cart => {
+          if(cart.product.id === action.idCart){
+            state.totalItem -=  cart.amounts
+          }
+        });
+
         state.carts = state.carts.filter(cart => cart.product.id !== action.idCart)
         return {...state}
 
       case PAY_CART:
-        return {...state, carts: [], totalPrice: 0}
+        return {...state, carts: [], totalPrice: 0, totalItem: 0}
 
       case GET_AMOUNTS:
         state.carts[state.carts.findIndex(cart => cart.id === action.idCart)].amounts = action.amounts
@@ -49,6 +61,11 @@ const CartReducer = (state = stateInitial, action) => {
         state.totalPrice = 0;
         state.carts.forEach(cart => {
           state.totalPrice +=  cart.product.price * cart.amounts
+        });
+
+        state.totalItem = 0;
+        state.carts.forEach(cart => {
+          state.totalItem +=  cart.amounts
         });
         return {... state}
 

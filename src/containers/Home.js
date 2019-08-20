@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { 
     addCart,
     changeSearchStatus,
+    changeSortStatus,
     getCategoriesSuccess,
     getCategoriesError,
     getAmountProduct,
@@ -27,6 +28,7 @@ class Home extends Component {
     
     componentDidMount() {
 
+        this.props.changeSortStatus(true);
         this.props.changeSearchStatus(true);
     
         API.get('/categories')
@@ -40,6 +42,7 @@ class Home extends Component {
         this.getProductsPagination(this.state.currentPage, this.state.itemPage);  
     }
     componentWillUnmount() {
+        this.props.changeSortStatus(false);
         this.props.changeSearchStatus(false);
         this.props.resetProducts();
     }
@@ -66,8 +69,8 @@ class Home extends Component {
         .catch(err =>  this.props.getProductsError(err))
     }
 
-    sortProduct = (products, search_key) => {
-        if(search_key === 'asc'){
+    sortProduct = (products, sort_key) => {
+        if(sort_key === 'asc'){
             products.sort((prevProduct, nextProduct)  => {
                 if (prevProduct.iat < nextProduct.iat) {
                   return -1;
@@ -79,7 +82,7 @@ class Home extends Component {
               });
         }
 
-        if(search_key === 'desc'){
+        if(sort_key === 'desc'){
             products.sort((prevProduct, nextProduct)  => {
                 if (prevProduct.iat > nextProduct.iat) {
                   return -1;
@@ -93,14 +96,14 @@ class Home extends Component {
     }
 
     render() {
-        const { products, amounts, error, search_key, addCart } = this.props;
+        const { products, amounts, error, sort_key, addCart } = this.props;
 
         const pageNumbers = [];
         for (let i = 1; i <= Math.ceil(amounts / 10); i++) {
             pageNumbers.push(i);
         }
         
-        this.sortProduct(products, search_key);
+        this.sortProduct(products, sort_key);
 
         return (
             <Fragment>
@@ -127,7 +130,7 @@ class Home extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        search_key: state.SearchReducer.search_key,
+        sort_key: state.SortReducer.sort_key,
         products: state.HomeReducer.products,
         amounts: state.HomeReducer.amounts,
         error: state.HomeReducer.error,
@@ -137,6 +140,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
     addCart,
     changeSearchStatus,
+    changeSortStatus,
     getCategoriesSuccess,
     getCategoriesError,
     getAmountProduct,

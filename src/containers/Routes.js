@@ -8,6 +8,7 @@ import Loading from '../components/loading';
 import Signin from '../components/signin';
 import Signup from '../components/signup';
 import ProductDetail from '../components/productDetail';
+import Sort from '../components/sort';
 import Search from '../components/search';
 
 
@@ -16,8 +17,9 @@ class Routes extends Component {
         return (
             <Fragment>
                 <Navigation/>
-                <Search/>
+                <Sort/>
                 <Loading/>
+                <Search/>
                 <Switch>
                     <Route exact path="/home" component={Home}/>
                     <Route exact path="/">

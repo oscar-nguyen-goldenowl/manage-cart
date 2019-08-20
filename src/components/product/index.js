@@ -59,15 +59,17 @@ class Product extends Component {
                         <div className="col-sm-4">
                             <p className="card-text">${price}</p>
                         </div>
-                        <div className="col-sm-8">
-                            <NavLink to={`/products/${id}/detail`} className="btn btn-secondary ml-2">Detail</NavLink>
-                        </div>
                     </div>
                     <div className="form-group d-flex align-items-center" style={{marginBottom: 0}}>
-                        <button onClick={this.decreaseAmount} className="btn btn-info mr-2" style={{width: 40}}>-</button>
-                        <input onChange={this.handleChange} value={amounts} className="form-control text-center" type="text" placeholder="0" style={{width: 70, display: 'inline-block'}}/>
-                        <button onClick={this.increaseAmount} className="btn btn-primary ml-2" style={{width: 40}}>+</button>
-                        <button  onClick={() => this.addCart(product)} className="btn btn-warning ml-4">Mua</button>
+                        <button onClick={this.decreaseAmount} className="btn btn-info mr-2" style={{minWidth: 40, marginLeft: '-10px'}}>-</button>
+                        <input onChange={this.handleChange} value={amounts} className="form-control text-center" type="text" placeholder="0" style={{minWidth: 70, display: 'inline-block'}}/>
+                        <button onClick={this.increaseAmount} className="btn btn-primary ml-2" style={{minWidth: 40}}>+</button>
+                        <button  onClick={() => this.addCart(product)} className="btn btn-warning ml-4">add to cart</button>
+                    </div>
+                    <div className="row mt-4">
+                      <div className="col-sm-12">
+                            <NavLink to={`/products/${id}/detail`} className="btn btn-secondary ml-2">Detail</NavLink>
+                        </div>
                     </div>
                 </div>
             </div>

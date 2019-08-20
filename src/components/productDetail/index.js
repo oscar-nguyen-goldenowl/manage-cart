@@ -7,23 +7,31 @@ import {
     getProductDetailError
 } from '../../actions';
 
-import {NavLink} from "react-router-dom";
-
 import "./detail.css";
 
 class ProductDetail extends Component {
     constructor(props) {
       super(props);
       this.state = {
+        nameCategory: '',
         amounts: 0
       }
     }
-    componentDidMount(){
-        
+    componentDidMount(){        
         API.get(`/products/${this.props.match.params.slug}`)
-            .then(res => this.props.getProductDetailSuccess(res.data))
+            .then(res => {
+              this.props.getProductDetailSuccess(res.data)    
+              API.get(`/categories/${res.data.categoryId}`)
+                .then(res => {
+                  this.setState({
+                    nameCategory: res.data.name
+                  });
+                })
+                .catch(err => err)
+            })
             .catch(err => this.props.getProductDetailError(err))
     }
+
 
     handleChange = (event) => {
       this.setState({
@@ -65,7 +73,6 @@ class ProductDetail extends Component {
         const {product} = this.props;
         const {name, price, des, url} = this.props.product;
         const {amounts} = this.state;
-        
         return (
             <div className="detail">
                 <div className="row">
@@ -77,7 +84,12 @@ class ProductDetail extends Component {
                         <hr className="my-4"/>
                         <p>Price : {price}</p>
                         <ul className="description">
-                            <li>{des}</li>
+                          <li>
+                            {
+                              this.state.nameCategory
+                            }
+                          </li>
+                          <li>{des}</li>
                         </ul>
                         <hr className="my-4"/>
                         <div className="amount">
@@ -101,7 +113,8 @@ class ProductDetail extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-      product: state.ProductDetailReducer.product
+      product: state.ProductDetailReducer.product,
+      categories: state.ProductReducer.categories,
     }
   }
 
