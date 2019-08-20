@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class Pagination extends Component {
     render() {
-
         const {pageNumbers, handleClick} = this.props;
         
         const renderPageNumbers = pageNumbers.map(number => {

@@ -16,10 +16,14 @@ class Routes extends Component {
     render() {
         return (
             <Fragment>
-                <Navigation/>
-                <Sort/>
                 <Loading/>
-                <Search/>
+                <Navigation/>
+                <div className="container mt-4">
+                  <div className="row">
+                    <Sort/>
+                    <Search/>
+                  </div>
+                </div>
                 <Switch>
                     <Route exact path="/home" component={Home}/>
                     <Route exact path="/">

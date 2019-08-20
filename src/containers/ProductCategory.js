@@ -5,6 +5,8 @@ import Pagination from '../components/pagination';
 import * as API from '../api';
 import { 
     addCart,
+    getSearchKey,
+    changeSearchStatus,
     changeSortStatus,
     getCategoriesSuccess,
     getCategoriesError,
@@ -26,6 +28,7 @@ class ProductCategory extends Component {
     componentDidMount() {
 
         this.props.changeSortStatus(true);
+        this.props.changeSearchStatus(true);
 
         API.get('/categories')
             .then(res => this.props.getCategoriesSuccess(res.data))
@@ -38,17 +41,34 @@ class ProductCategory extends Component {
     componentWillReceiveProps(nextProps){
         if(nextProps.match.params.slug !== this.props.match.params.slug){
 
-            this.getProductsPagination(nextProps.match.params.slug, this.state.currentPage, this.state.itemPage);
+          this.props.getSearchKey("");
+
+          this.getProductsPagination(nextProps.match.params.slug, this.state.currentPage, this.state.itemPage);
 
         }
     }
 
     componentWillUnmount(){
         this.props.changeSortStatus(false);
+        this.props.changeSearchStatus(false);
+        this.props.getSearchKey("");
     }
 
     handleClick = (event) => {
         event.preventDefault();
+
+        // selected for pagination : start
+        let tagAllPagination = event.target.parentElement.parentElement.childNodes;
+        let prevPagination = event.target.parentElement;      
+        
+        tagAllPagination.forEach(tag => {
+          tag.classList.remove('active')
+        });
+
+        prevPagination.classList.toggle('active')
+        // selected for pagination : end
+
+        
         this.setState({
             currentPage: Number(event.target.id)
         },() => {
@@ -93,8 +113,18 @@ class ProductCategory extends Component {
         }
     }
 
+    searchProduct = (products, search_key) => {
+      const tempProducts = [];
+      products && products.length && products.forEach(product => {
+        if(product.name.match(search_key)){
+          tempProducts.push(product);
+        }
+      });
+      return tempProducts;
+    }
+
     render() {
-        let {categories, products, amounts, error, sort_key, addCart } = this.props; 
+        let {categories, products, amounts, error, search_key, sort_key, addCart } = this.props; 
       
         const pageNumbers = [];
         for (let i = 1; i <= Math.ceil(amounts / 10); i++) {
@@ -102,6 +132,10 @@ class ProductCategory extends Component {
         }
 
         this.sortProduct(products, sort_key);
+
+        if(this.searchProduct(products, search_key && this.searchProduct(products, search_key))){
+          products = this.searchProduct(products, search_key) 
+        }
 
         return (
             <Fragment>
@@ -134,6 +168,7 @@ class ProductCategory extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
+        search_key: state.SearchReducer.search_key,
         sort_key: state.SortReducer.sort_key,
         amounts: state.ProductReducer.amounts,
         products: state.ProductReducer.products,
@@ -144,6 +179,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
     addCart,
+    getSearchKey,
+    changeSearchStatus,
     changeSortStatus,
     getCategoriesSuccess,
     getCategoriesError,

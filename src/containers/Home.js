@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { 
     addCart,
+    getSearchKey,
     changeSearchStatus,
     changeSortStatus,
     getCategoriesSuccess,
@@ -44,12 +45,25 @@ class Home extends Component {
     componentWillUnmount() {
         this.props.changeSortStatus(false);
         this.props.changeSearchStatus(false);
+        this.props.getSearchKey("");
         this.props.resetProducts();
     }
 
     handleClick = (event) => {
 
         event.preventDefault();
+
+        // selected for pagination : start
+        let tagAllPagination = event.target.parentElement.parentElement.childNodes;
+        let prevPagination = event.target.parentElement;      
+        
+        tagAllPagination.forEach(tag => {
+          tag.classList.remove('active')
+        });
+
+        prevPagination.classList.toggle('active')
+
+        // selected for pagination : end
 
         this.setState({
             currentPage: Number(event.target.id)
@@ -95,8 +109,18 @@ class Home extends Component {
         }
     }
 
+    searchProduct = (products, search_key) => {
+      const tempProducts = [];
+      products && products.length && products.forEach(product => {
+        if(product.name.match(search_key)){
+          tempProducts.push(product);
+        }
+      });
+      return tempProducts;
+    }
+
     render() {
-        const { products, amounts, error, sort_key, addCart } = this.props;
+        let { products, amounts, error, sort_key, search_key, addCart } = this.props;
 
         const pageNumbers = [];
         for (let i = 1; i <= Math.ceil(amounts / 10); i++) {
@@ -104,6 +128,10 @@ class Home extends Component {
         }
         
         this.sortProduct(products, sort_key);
+
+        if(this.searchProduct(products, search_key && this.searchProduct(products, search_key))){
+          products = this.searchProduct(products, search_key) 
+        }
 
         return (
             <Fragment>
@@ -130,6 +158,7 @@ class Home extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
+        search_key: state.SearchReducer.search_key,
         sort_key: state.SortReducer.sort_key,
         products: state.HomeReducer.products,
         amounts: state.HomeReducer.amounts,
@@ -139,6 +168,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
     addCart,
+    getSearchKey,
     changeSearchStatus,
     changeSortStatus,
     getCategoriesSuccess,

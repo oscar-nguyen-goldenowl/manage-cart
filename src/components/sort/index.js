@@ -25,18 +25,14 @@ class Sort extends Component {
         const { sort_status } = this.props;
         return (
           sort_status ?
-                <div className="container mt-4">
-                    <div className="row">
-                        <div className="col-sm-12">
-                            <div className="input-group align-items-center">
-                                <label style={{marginBottom: 0}} className="mr-2">Sort by:</label>
-                                <select className="custom-select" onChange={this.handleSearch}>
-                                    <option value="asc">ASC</option>
-                                    <option value="desc">DESC</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                <div className="col-sm-6">
+                  <div className="input-group align-items-center">
+                      <label style={{marginBottom: 0}} className="mr-2">Sort by:</label>
+                      <select className="custom-select" onChange={this.handleSearch}>
+                          <option value="asc">ASC</option>
+                          <option value="desc">DESC</option>
+                      </select>
+                  </div>
                 </div>
             : ""
         );

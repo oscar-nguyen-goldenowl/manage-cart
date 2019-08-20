@@ -3,14 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 
-class Navigation extends Component {
-
- 
-    handleClick = (event) => {
-      console.log(event);
-      
-    }
-    
+class Navigation extends Component {    
     render() {
         const {categories, totalItem} = this.props;
         return (
