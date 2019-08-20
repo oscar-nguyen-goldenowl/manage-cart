@@ -58,10 +58,10 @@ class Home extends Component {
         let prevPagination = event.target.parentElement;      
         
         tagAllPagination.forEach(tag => {
-          tag.classList.remove('active')
+          tag.classList.remove('active-pagination')
         });
 
-        prevPagination.classList.toggle('active')
+        prevPagination.classList.toggle('active-pagination')
 
         // selected for pagination : end
 
