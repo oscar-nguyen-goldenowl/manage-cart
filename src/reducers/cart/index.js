@@ -4,6 +4,7 @@ import {
   PAY_CART,
   GET_AMOUNTS
 } from '../../actions';
+import { statements } from '@babel/template';
 
 const stateInitial = {
   // my state
@@ -53,6 +54,9 @@ const CartReducer = (state = stateInitial, action) => {
         return {...state}
 
       case PAY_CART:
+        if(state.totalItem === 0){
+          return {...state}
+        }
         return {...state, carts: [], totalPrice: 0, totalItem: 0}
 
       case GET_AMOUNTS:

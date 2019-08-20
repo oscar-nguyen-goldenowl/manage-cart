@@ -17,10 +17,10 @@ class Pagination extends Component {
       this.props.handleClick(event);
     }
     render() {
-        const {amountProducts} = this.props;
+        const {amountProducts, itemPage} = this.props;
 
         const pageNumbers = [];
-        for (let i = 1; i <= Math.ceil(amountProducts / 10); i++) {
+        for (let i = 1; i <= Math.ceil(amountProducts / itemPage); i++) {
             pageNumbers.push(i);
         }
         

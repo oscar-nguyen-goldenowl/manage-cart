@@ -126,7 +126,7 @@ class Home extends Component {
 
     render() {
         let { products, amounts, error, addCart } = this.props;
-        const {sort_key, search_key} = this.state;
+        const {sort_key, search_key, itemPage} = this.state;
               
 
         // products bt search
@@ -157,7 +157,7 @@ class Home extends Component {
                       }
                       </div>
                   </div>
-                  <Pagination amountProducts={amounts}  handleClick={this.handleClick}/>
+                  <Pagination amountProducts={amounts} itemPage = {itemPage} handleClick={this.handleClick}/>
               </div>
             </Fragment>
         );

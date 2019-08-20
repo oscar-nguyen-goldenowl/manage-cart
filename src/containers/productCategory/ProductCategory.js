@@ -123,12 +123,12 @@ class ProductCategory extends Component {
       // }, []);
 
       // Solution 2
-      return (products || []).reduce((result, prod) => prod.name.match(search_key) ? [...result, prod] : [...result], []);
+      return (products || []).reduce((result, prod) => prod.name.toLowerCase().match(search_key.toLowerCase()) ? [...result, prod] : [...result], []);
     }
 
     render() {
         let {categories, products, amounts, error, addCart } = this.props; 
-        const {sort_key, search_key} = this.state;
+        const {sort_key, search_key, itemPage} = this.state;
 
         // products bt search
         products = this.searchProduct(products, search_key)
@@ -164,7 +164,7 @@ class ProductCategory extends Component {
                       }
                       </div>
                   </div>
-                  <Pagination amountProducts={amounts}  handleClick={this.handleClick}/>
+                  <Pagination amountProducts={amounts} itemPage = {itemPage}  handleClick={this.handleClick}/>
               </div>
             </Fragment>
         );

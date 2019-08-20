@@ -37,10 +37,19 @@ class Cart extends Component {
   }
   
   decreaseAmount = () => {
-    this.state.amounts !== 0 ? this.setState(
-                                              {amounts: this.state.amounts - 1},
-                                              () => this.props.getAmounts(this.props.cart.id, this.state.amounts)
-                                            ) : this.setState({amounts: 0})
+    if(+this.state.amounts === 1 || +this.state.amounts < 1 || isNaN(this.state.amounts)){
+      this.setState({
+        amounts: 1
+      });
+    }
+    else{
+      this.setState(
+        {
+          amounts: this.state.amounts - 1
+        },
+        () => this.props.getAmounts(this.props.cart.id, this.state.amounts)
+      );
+    }
   }
   
   render() {
