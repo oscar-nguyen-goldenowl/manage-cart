@@ -39,7 +39,7 @@ class Signup extends Component {
         return this.parent.password === value;
       }),
   })
-  Render = props => (
+  renderForm = props => (
     <form onSubmit={props.handleSubmit}>
       <Grid container justify='center' alignContent='center'>
         <Grid item xs={6} md={4}>
@@ -116,7 +116,7 @@ class Signup extends Component {
         initialValues={this.state}
         onSubmit={this.onSubmit}
         validationSchema={this.validationSchema}
-        render={this.Render} />
+        render={this.renderForm} />
     );
   }
 }

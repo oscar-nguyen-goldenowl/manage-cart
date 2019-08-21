@@ -31,7 +31,8 @@ class Signin extends Component {
       .required('Password is required')
       .min(8, 'Password must have min 8 characters')
   })
-  Render = props => (
+
+  renderForm = props => (
     <form onSubmit={props.handleSubmit}>
       <Grid container justify='center' alignContent='center'>
         <Grid item xs={6} md={4}>
@@ -61,7 +62,7 @@ class Signin extends Component {
                 style={{ outline: 'none' }}
               >
                 Signin
-                                </Button>
+              </Button>
             </FormControl>
             <FormControl fullWidth margin='normal'>
               <Link to="/signup" className="MuiButtonBase-root MuiButton-root MuiButton-outlined">Signup</Link>
@@ -93,7 +94,7 @@ class Signin extends Component {
           initialValues={this.state}
           onSubmit={this.onSubmit}
           validationSchema={this.validationSchema}
-          render={this.Render}
+          render={this.renderForm}
         />
       </div>
     );

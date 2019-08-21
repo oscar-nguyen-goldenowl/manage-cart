@@ -45,8 +45,8 @@ class Navigation extends Component {
             <Link to="/signup" className={`btn btn-outline-success my-2 my-sm-0 mr-4 text-white ${token ? "d-none" : ""}`} style={{ border: 'none' }}>Sign up</Link>
             <div className={`nav-item dropdown ${token ? "d-inline-block" : ""}`} style={{ display: 'none' }}>
               <div className="nav-link" style={{ background: '#28a745', borderRadius: '30%', cursor: 'pointer' }} href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                O
-                        </div>
+                <i class="fas fa-user"></i>
+              </div>
               <div className="dropdown-menu" style={{ left: 'auto', right: 0 }} aria-labelledby="navbarDropdown">
                 <a className="dropdown-item" href="/">Profile</a>
                 <div className="dropdown-divider"></div>

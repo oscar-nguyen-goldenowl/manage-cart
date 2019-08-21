@@ -4,8 +4,8 @@ import Home from './home/Home';
 import ProductCategory from './productCategory/ProductCategory';
 import Carts from './Carts/Carts';
 import ProductDetail from './productDetail';
-import Signin from '../components/signin';
-import Signup from '../components/signup';
+import Signin from './signin';
+import Signup from './signup';
 
 class Routes extends Component {
   render() {
