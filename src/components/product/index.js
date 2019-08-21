@@ -32,16 +32,21 @@ class Product extends Component {
   }
 
   addCart = (product) => {
-    const cart = {
-      id: product.id,
-      product,
-      amounts: this.state.amounts
-    }
-    if(this.state.amounts !== 0){
-      this.props.addCart(cart);
+    if(localStorage.getItem("user")){
+      const cart = {
+        id: product.id,
+        product,
+        amounts: this.state.amounts
+      }
+      if(this.state.amounts !== 0){
+        this.props.addCart(cart);
+      }else{
+        alert("Số lượng phải > 0")
+        return;
+      }
     }else{
-      alert("Số lượng phải > 0")
-      return;
+      alert('Login please !');
+      this.props.redirectProduct("/signin");
     }
   }
   

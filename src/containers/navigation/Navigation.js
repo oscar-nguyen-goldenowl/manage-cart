@@ -3,9 +3,15 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 
-class Navigation extends Component {    
+class Navigation extends Component {   
+
+    handleLogout = () => {
+      localStorage.setItem("user", "");
+    }
     render() {
         const {categories, totalItem} = this.props;
+        const token = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : "";
+        
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-info">
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,13 +36,23 @@ class Navigation extends Component {
                         </li>
                     </ul>
                     <div className="form-inline my-2 my-lg-0">
-                      <Link to="/oscar/cart" className="btn btn-outline-success my-2 my-sm-0 mr-4 text-white" style={{border: 'none'}}>
+                      <Link to="/oscar/cart" className={`btn btn-outline-success my-2 my-sm-0 mr-4 text-white ${token ? "d-inline-block" : ""}`} style={{border: 'none', display: 'none'}}>
                         <i className="fas fa-cart-plus"></i>
                         <span className="badge badge-danger" style={{top: '-10px'}}>{totalItem}</span>
                         <span className="sr-only">unread messages</span>
                       </Link>
-                      <Link to="/signin" className="btn btn-outline-success my-2 my-sm-0 text-white" style={{border: 'none'}} >Sign in</Link>
-                      <Link to="/signup" className="btn btn-outline-success my-2 my-sm-0 ml-4 text-white" style={{border: 'none'}}>Sign up</Link>
+                      <Link to="/signin" className={`btn btn-outline-success my-2 my-sm-0 mr-4 text-white ${token ? "d-none" : ""}`}  style={{border: 'none'}} >Sign in</Link>
+                      <Link to="/signup" className={`btn btn-outline-success my-2 my-sm-0 mr-4 text-white ${token ? "d-none" : ""}`} style={{border: 'none'}}>Sign up</Link>
+                      <div className={`nav-item dropdown ${token ? "d-inline-block" : ""}`} style={{display: 'none'}}>
+                        <div className="nav-link" style={{background: '#28a745', borderRadius: '30%', cursor: 'pointer'}} href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          O
+                        </div>
+                        <div className="dropdown-menu" style={{left: 'auto', right: 0}} aria-labelledby="navbarDropdown">
+                          <a className="dropdown-item" href="/">Profile</a>
+                          <div className="dropdown-divider"></div>
+                          <Link onClick={this.handleLogout} to="/" className="dropdown-item" >Logout</Link>
+                        </div>
+                      </div>
                     </div>
                 </div>
             </nav>
@@ -46,8 +62,9 @@ class Navigation extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
     return {
-       categories: state.ProductReducer.categories,
-       totalItem: state.CartReducer.totalItem
+      loginStatus : state.HomeReducer.loginStatus,
+      categories: state.ProductReducer.categories,
+      totalItem: state.CartReducer.totalItem
     }
   }
 

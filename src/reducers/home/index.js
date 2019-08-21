@@ -3,7 +3,9 @@ import {
     GET_PRODUCT_SUCCESS, 
     GET_PRODUCT_ERROR,
     RESET_PRODUCTS,
-    LOADING 
+    LOADING ,
+    GET_PATH_NAME,
+    CHANGE_LOGIN_STATUS
 } from '../../actions';
 
 const stateInitial = {
@@ -11,7 +13,9 @@ const stateInitial = {
     products: [],
     error: [],
     amounts: [],
-    isLoading: false
+    isLoading: false,
+    pathName: "",
+    loginStatus: false,
 }
 
 const HomeReducer = (state = stateInitial, action) => {
@@ -26,6 +30,10 @@ const HomeReducer = (state = stateInitial, action) => {
                 return {...state, products: action.products}
             case LOADING:
                 return {...state, isLoading: action.isLoading}
+            case GET_PATH_NAME:
+                return {...state, pathName: action.pathName}
+            case CHANGE_LOGIN_STATUS:
+                return {...state, loginStatus: action.loginStatus}
             default :
                 return state
         }

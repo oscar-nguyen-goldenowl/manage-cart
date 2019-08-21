@@ -1,4 +1,5 @@
 import React,{ Component } from 'react';
+import * as API from '../../api';
 import {
     Input, 
     FormControl, 
@@ -80,7 +81,6 @@ class Signup extends Component {
                                 render={({field}) => (
                                     <Input fullWidth type="password" {...field}/>
                             )}/>
-                            {props.touched.confirmPassword && <FormHelperText>{props.errors.confirmPassword}</FormHelperText>}
                         </FormControl>
                         <FormControl fullWidth margin='normal'>
                             <Button
@@ -97,7 +97,18 @@ class Signup extends Component {
         </form>
     )
     onSubmit = (values, actions) => {
-        console.log(values);
+      API.post('/auth/sign-up', values)
+        .then(res => {
+          if(res.data.error){
+            alert(res.data.message);
+            return;
+          }
+          localStorage.setItem('user', JSON.stringify(res.data));
+          this.props.history.push('/') 
+        })
+        .catch(err => {
+          alert("Email is existed!");
+        })
     }
     render() {
         return (

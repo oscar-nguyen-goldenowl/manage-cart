@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import * as API from '../../api';
 import {
     addCart,
+    getPathname,
     getProductDetailSuccess,
     getProductDetailError
 } from '../../actions';
@@ -56,16 +57,25 @@ class ProductDetail extends Component {
     }
 
     addCart = (product) => {
-      const cart = {
-        id: product.id,
-        product,
-        amounts: this.state.amounts
-      }
-      if(this.state.amounts !== 0){
-        this.props.addCart(cart);
+      if(localStorage.getItem("user")){
+        const cart = {
+          id: product.id,
+          product,
+          amounts: this.state.amounts
+        }
+        if(this.state.amounts !== 0){
+          this.props.addCart(cart);
+        }else{
+          alert("Số lượng phải > 0")
+          return;
+        }
       }else{
-        alert("Số lượng phải > 0")
-        return;
+        alert('Login please !');
+        localStorage.setItem("loginStatus", true);
+        this.props.history.push("/signin")
+
+        //get pathName current page
+        this.props.getPathname(this.props.match.url);
       }
     }
 
@@ -73,6 +83,7 @@ class ProductDetail extends Component {
         const {product} = this.props;
         const {name, price, des, url} = this.props.product;
         const {amounts} = this.state;
+        
         return (
             <div className="detail">
                 <div className="row">
@@ -99,7 +110,7 @@ class ProductDetail extends Component {
                                         <button onClick={this.decreaseAmount} className="btn btn-info mr-2" style={{width: 40}}>-</button>
                                         <input onChange={this.handleChange} value={amounts} className="form-control text-center" type="text" placeholder="0" style={{width: 70, display: 'inline-block'}}/>
                                         <button onClick={this.increaseAmount} className="btn btn-primary ml-2" style={{width: 40}}>+</button>
-                                        <button onClick={() => this.addCart(product)} className="btn btn-warning ml-4">Mua</button>
+                                        <button onClick={() => this.addCart(product)} className="btn btn-warning ml-4">add to cart</button>
                                     </div>
                                 </div>
                             </div>
@@ -120,6 +131,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
     addCart,
+    getPathname,
     getProductDetailSuccess,
     getProductDetailError
 }

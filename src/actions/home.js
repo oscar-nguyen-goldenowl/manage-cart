@@ -4,6 +4,8 @@ export const GET_PRODUCT_SUCCESS = "GET_PRODUCT_SUCCESS";
 export const GET_PRODUCT_ERROR = "GET_PRODUCT_ERROR";
 export const RESET_PRODUCTS = "RESET_PRODUCTs";
 export const LOADING = "LOADING";
+export const GET_PATH_NAME = "GET_PATH_NAME";
+export const CHANGE_LOGIN_STATUS = "CHANGE_LOGIN_STATUS";
 
 
 export const loading = (isLoading) => {
@@ -40,4 +42,18 @@ export const resetProducts = () => {
         type: RESET_PRODUCTS,
         products: []
     }
+}
+
+export const getPathname = (pathName) => {
+  return {
+    type: GET_PATH_NAME,
+    pathName
+  }
+}
+
+export const changeLoginStatus = (loginStatus) => {
+  return {
+    type: CHANGE_LOGIN_STATUS,
+    loginStatus
+  }
 }

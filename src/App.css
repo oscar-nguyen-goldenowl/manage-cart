@@ -1,3 +1,11 @@
 .nav-link{
     color: #ffffff !important;
 }
+
+.active-cart{
+  display: inline-block !important;
+}
+
+.active-login{
+  display: inline-block !important;
+}

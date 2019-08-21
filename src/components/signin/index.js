@@ -1,4 +1,9 @@
 import React,{ Component } from 'react';
+import {connect} from 'react-redux';
+import {
+  changeLoginStatus
+} from '../../actions';
+import * as API from '../../api';
 import {
     Input, 
     FormControl, 
@@ -14,14 +19,13 @@ import * as Yup from 'yup';
 
 class Signin extends Component {
     state = {
-        username: '',
+        email: '',
         password: '',
     }
     validationSchema = Yup.object().shape({
-        username: Yup.string()
-                    .required('Username is required')
-                    .min(5, 'Username must have min 5 characters')
-                    .max(10, 'Usernme have max 10 charaters'),
+        email: Yup.string()
+                    .required('Email is required')
+                    .email('Email is valid'),
         password: Yup.string()
                     .required('Password is required')
                     .min(8, 'Password must have min 8 characters')
@@ -32,14 +36,14 @@ class Signin extends Component {
                  <Grid item xs={6} md={4}>
                     <Paper elevation={4} style={{ padding: '20px 15px', marginTop: '30px' }}>
                         <Typography gutterBottom>Signin</Typography>
-                        <FormControl fullWidth margin='normal' error={props.touched.username && !!props.errors.username}>
+                        <FormControl fullWidth margin='normal' error={props.touched.email && !!props.errors.email}>
                             <InputLabel>Username</InputLabel>
                             <Field 
-                                name='username'
+                                name='email'
                                 render={({field}) => (
                                     <Input fullWidth {...field}/>
                             )}/>
-                            {props.touched.username && <FormHelperText>{props.errors.username}</FormHelperText>}
+                            {props.touched.email && <FormHelperText>{props.errors.email}</FormHelperText>}
                         </FormControl>  
                         <FormControl fullWidth margin='normal' error={props.touched.password && !!props.errors.password}>
                             <InputLabel>Password</InputLabel>
@@ -48,12 +52,19 @@ class Signin extends Component {
                                 render={({field}) => (
                                     <Input fullWidth type="password" {...field}/>
                             )}/>
-                            {props.touched.password && <FormHelperText>{props.errors.password}</FormHelperText>}
                         </FormControl>
                         <FormControl fullWidth margin='normal'>
                             <Button
                                 variant='outlined'
                                 type='submit'
+                                style={{outline: 'none'}}
+                            >
+                                Signin
+                                </Button>
+                        </FormControl>
+                        <FormControl fullWidth margin='normal'>
+                            <Button
+                                variant='outlined'
                                 style={{outline: 'none'}}
                             >
                                 Signup
@@ -65,9 +76,21 @@ class Signin extends Component {
         </form>
     )
     onSubmit = (values, actions) => {
-        console.log(values);
+      API.post('/auth/sign-in', values)
+      .then(res => {
+        if(res.data.error){
+          alert(res.data.message);
+          return;
+        }
+        localStorage.setItem('user', JSON.stringify(res.data));
+        this.props.changeLoginStatus(true);
+        this.props.history.push(this.props.pathName);
+      })
+      .catch(err => {
+        console.log(err, err.message);
+      })
     }
-    render() {
+    render() {      
         return (
             <div>
                 <Formik
@@ -81,4 +104,13 @@ class Signin extends Component {
     }
 }
 
-export default Signin;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    pathName: state.HomeReducer.pathName
+  }
+}
+const mapDispatchToProps = {
+  changeLoginStatus
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )(Signin);

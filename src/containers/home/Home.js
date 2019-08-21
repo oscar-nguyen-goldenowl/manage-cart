@@ -2,8 +2,9 @@ import React, { Component, Fragment } from 'react';
 import Sort from '../../components/sort';
 import Search from '../../components/search';
 import { connect } from 'react-redux';
-import { 
+import {
     addCart,
+    getPathname,
     getCategoriesSuccess,
     getCategoriesError,
     getAmountProduct,
@@ -29,7 +30,6 @@ class Home extends Component {
     }
     
     componentDidMount() {
-    
         API.get('/categories')
             .then(res => this.props.getCategoriesSuccess(res.data))
             .catch(err => this.props.getCategoriesError(err)) 
@@ -47,18 +47,6 @@ class Home extends Component {
     handleClick = (event) => {
 
         event.preventDefault();
-
-        // // selected for pagination : start
-        // let tagAllPagination = event.target.parentElement.parentElement.childNodes;
-        // let prevPagination = event.target.parentElement;      
-        
-        // tagAllPagination.forEach(tag => {
-        //   tag.classList.remove('active-pagination')
-        // });
-
-        // prevPagination.classList.toggle('active-pagination')
-
-        // // selected for pagination : end
 
         this.setState({
             currentPage: Number(event.target.id)
@@ -124,15 +112,22 @@ class Home extends Component {
       return (products || []).reduce((result, prod) => prod.name.toLowerCase().match(search_key.toLowerCase()) ? [...result, prod] : [...result], []);
     }
 
+    redirectProduct = (pathname) => {   
+      // redirect for product in current page
+      this.props.history.push(pathname);
+
+      // get pathName current page
+      this.props.getPathname(this.props.match.url);
+    }
+
     render() {
         let { products, amounts, error, addCart } = this.props;
         const {sort_key, search_key, itemPage} = this.state;
-              
 
-        // products bt search
+        // products by search
         products = this.searchProduct(products, search_key)
 
-        // products bt sort
+        // products by sort
         products =  this.sortProduct(products, sort_key);
 
         return (
@@ -150,7 +145,11 @@ class Home extends Component {
                           products && products.length ? 
                           (
                               products.map((product) => {
-                                  return <Product key={product.id} product = {product} addCart = {addCart}/>
+                                  return <Product 
+                                                  key={product.id} 
+                                                  product = {product} 
+                                                  addCart = {addCart}
+                                                  redirectProduct = {this.redirectProduct}/>
                               })
                           )  
                           : error
@@ -174,6 +173,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
     addCart,
+    getPathname,
     getCategoriesSuccess,
     getCategoriesError,
     getAmountProduct,
