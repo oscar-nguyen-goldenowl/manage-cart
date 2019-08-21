@@ -23,7 +23,7 @@ class Loading extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        isLoading: state.HomeReducer.isLoading,
+        isLoading: state.AppReducer.isLoading,
     }
   }
 

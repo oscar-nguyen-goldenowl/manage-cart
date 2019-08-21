@@ -1,34 +1,30 @@
-import { 
-    GET_AMOUNT_PRODUCT,
-    GET_PRODUCT_SUCCESS, 
-    GET_PRODUCT_ERROR,
-    RESET_PRODUCTS,
-    LOADING 
+import {
+  GET_AMOUNT_PRODUCT,
+  GET_PRODUCT_SUCCESS,
+  GET_PRODUCT_ERROR,
+  RESET_PRODUCTS,
 } from '../../actions';
 
 const stateInitial = {
-    // my state
-    products: [],
-    error: [],
-    amounts: [],
-    isLoading: false
+  // my state
+  products: [],
+  error: [],
+  amounts: []
 }
 
 const HomeReducer = (state = stateInitial, action) => {
-        switch(action.type){
-            case GET_AMOUNT_PRODUCT:
-                    return {...state, amounts: action.amounts}
-            case GET_PRODUCT_SUCCESS:
-                return {...state, products: action.products}
-            case GET_PRODUCT_ERROR:
-                return {...state, error: action.error}
-            case RESET_PRODUCTS:
-                return {...state, products: action.products}
-            case LOADING:
-                return {...state, isLoading: action.isLoading}
-            default :
-                return state
-        }
+  switch (action.type) {
+    case GET_AMOUNT_PRODUCT:
+      return { ...state, amounts: action.amounts }
+    case GET_PRODUCT_SUCCESS:
+      return { ...state, products: action.products }
+    case GET_PRODUCT_ERROR:
+      return { ...state, error: action.error }
+    case RESET_PRODUCTS:
+      return { ...state, products: action.products }
+    default:
+      return state
+  }
 }
 
 export default HomeReducer;

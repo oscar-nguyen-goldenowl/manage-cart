@@ -20,7 +20,6 @@ const authenticationMiddleware = (req, res, next) => {
     const token = req.headers['Authorization'] || req.headers['authorization'];
 
     if (!token) {
-      res.status = 401;
       res.json({
         error: true,
         message: 'Not Authorization'
@@ -34,7 +33,6 @@ const authenticationMiddleware = (req, res, next) => {
     const accessKey = decoded ? decoded.accessKey : null;
 
     if (!accessKey) {
-      res.status = 401;
       res.json({
         error: true,
         message: 'Not Authentication',
@@ -44,7 +42,6 @@ const authenticationMiddleware = (req, res, next) => {
     const existedUser = users.find(u => u.accessKey  === accessKey);
 
     if (!existedUser) {
-      res.status = 404;
       res.json({
         error: true,
         message: 'Not found!',
@@ -84,11 +81,11 @@ server.post('/auth/sign-up', (req, res) => {
   const { users } = data;
   const existedUser = users.find(u => u.email  === email);
   if (existedUser) {
-    res.status = 422;
     res.json({
       error: true,
       message: 'User existed',
     });
+    return;
   }
   const newUser = { id: users.length + 1, username, email, password: hashedPassword, accessKey, createdAt };
   users.push(newUser);
@@ -113,19 +110,17 @@ server.post('/auth/sign-in', (req, res) => {
   const existedUser = users.find(u => u.email  === email);
 
   if (!existedUser) {
-    res.status = 404;
     res.json({
       error: true,
-      message: 'Not found'
+      message: 'Wrong user or password'
     });
     return;
   }
 
   if (!bcrypt.compareSync(password, existedUser.password)) {
-    res.status = 404;
     res.json({
       error: true,
-      message: 'Wrong username or password'
+      message: 'Wrong user or password'
     });
     return;
   }
@@ -155,7 +150,10 @@ server.get('/categories/:catId/products', (req, res) => {
     let { _page, _limit } = req.query;
 
     if (!catId) {
-        return res.status(404);
+        res.json({
+          error: true,
+          message: 'Bad request'
+        });
     }
 
     if (!_limit) {
@@ -181,7 +179,22 @@ server.get('/categories/:catId/products', (req, res) => {
 });
 
 server.get('/profile', (req, res, next) => {
-  res.json({text: 'hello'});
+  // res.json({text: 'hello'});
+  const curUser = {...req.user};
+  if (!curUser) {
+    res.status(400);
+    res.json({
+      error: true,
+      message: 'Not found user!',
+    });
+    return;
+  }
+
+  delete curUser.accessKey;
+  delete curUser.password;
+  res.json({
+    user: curUser
+  });
 });
 
 server.use(router);
