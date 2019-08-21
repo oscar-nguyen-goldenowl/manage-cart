@@ -103,7 +103,7 @@ class Signup extends Component {
           alert(res.data.message);
           return;
         }
-        localStorage.setItem('user', JSON.stringify(res.data));
+        localStorage.setItem('token', JSON.stringify(res.data.token));
         this.props.history.push('/')
       })
       .catch(err => {

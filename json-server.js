@@ -179,7 +179,22 @@ server.get('/categories/:catId/products', (req, res) => {
 });
 
 server.get('/profile', (req, res, next) => {
-  res.json({text: 'hello'});
+  // res.json({text: 'hello'});
+  const curUser = {...req.user};
+  if (!curUser) {
+    res.status(400);
+    res.json({
+      error: true,
+      message: 'Not found user!',
+    });
+    return;
+  }
+
+  delete curUser.accessKey;
+  delete curUser.password;
+  res.json({
+    user: curUser
+  });
 });
 
 server.use(router);

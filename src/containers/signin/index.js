@@ -79,8 +79,8 @@ class Signin extends Component {
           alert(res.data.message);
           return;
         }
-        localStorage.setItem('user', JSON.stringify(res.data));
-        this.props.changeLoginStatus(true);
+        localStorage.setItem('token', JSON.stringify(res.data.token));
+        this.props.changeLoginStatus(!this.props.loginStatus);
         this.props.history.push(this.props.pathName);
       })
       .catch(err => {
@@ -103,6 +103,7 @@ class Signin extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    loginStatus: state.AppReducer.loginStatus,
     pathName: state.AppReducer.pathName
   }
 }

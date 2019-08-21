@@ -6,12 +6,12 @@ import { connect } from 'react-redux';
 class Navigation extends Component {
 
   handleLogout = () => {
-    localStorage.setItem("user", "");
+    localStorage.setItem("token", "");
   }
   render() {
     const { categories, totalItem } = this.props;
-    const token = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : "";
-
+    const token = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : "";
+    
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-info">
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,7 @@ class Navigation extends Component {
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Categories
-                            </a>
+              </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 {
                   categories && categories.length && categories.map(category => {
@@ -45,12 +45,12 @@ class Navigation extends Component {
             <Link to="/signup" className={`btn btn-outline-success my-2 my-sm-0 mr-4 text-white ${token ? "d-none" : ""}`} style={{ border: 'none' }}>Sign up</Link>
             <div className={`nav-item dropdown ${token ? "d-inline-block" : ""}`} style={{ display: 'none' }}>
               <div className="nav-link" style={{ background: '#28a745', borderRadius: '30%', cursor: 'pointer' }} href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user"></i>
+                <i className="fas fa-user"></i>
               </div>
               <div className="dropdown-menu" style={{ left: 'auto', right: 0 }} aria-labelledby="navbarDropdown">
                 <a className="dropdown-item" href="/">Profile</a>
                 <div className="dropdown-divider"></div>
-                <Link onClick={this.handleLogout} to="/" className="dropdown-item" >Logout</Link>
+                <button onClick={this.handleLogout} className="dropdown-item" >Logout</button>
               </div>
             </div>
           </div>
