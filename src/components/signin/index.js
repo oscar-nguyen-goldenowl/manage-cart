@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   changeLoginStatus
@@ -63,12 +64,7 @@ class Signin extends Component {
                                 </Button>
             </FormControl>
             <FormControl fullWidth margin='normal'>
-              <Button
-                variant='outlined'
-                style={{ outline: 'none' }}
-              >
-                Signup
-                                </Button>
+              <Link to="/signup" className="MuiButtonBase-root MuiButton-root MuiButton-outlined">Signup</Link>
             </FormControl>
           </Paper>
         </Grid>
