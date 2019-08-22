@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
-  changeLoginStatus
+  changeLoginStatus,
+  getProfileSuccess,
+  getProfileError
 } from '../../actions';
 import * as API from '../../api';
 import {
@@ -79,7 +81,8 @@ class Signin extends Component {
           alert(res.data.message);
           return;
         }
-        localStorage.setItem('token', JSON.stringify(res.data.token));
+        localStorage.setItem('token', res.data.token);
+        this.props.getProfileSuccess(res.data.user);
         this.props.changeLoginStatus(!this.props.loginStatus);
         this.props.history.push(this.props.pathName);
       })
@@ -108,7 +111,9 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 const mapDispatchToProps = {
-  changeLoginStatus
+  changeLoginStatus,
+  getProfileSuccess,
+  getProfileError
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signin);

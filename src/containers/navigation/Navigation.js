@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 
 
 class Navigation extends Component {
-
   handleLogout = () => {
     localStorage.setItem("token", "");
   }
   render() {
-    const { categories, totalItem } = this.props;
-    const token = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : "";
+    const { categories, totalItem, profile } = this.props;
+    const token = localStorage.getItem('token') ? localStorage.getItem('token') : "";
+    const username = profile ? profile.username : "";
+    console.log("username: ", username);
+    
     
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-info">
@@ -36,7 +38,7 @@ class Navigation extends Component {
             </li>
           </ul>
           <div className="form-inline my-2 my-lg-0">
-            <Link to="/oscar/cart" className={`btn btn-outline-success my-2 my-sm-0 mr-4 text-white ${token ? "d-inline-block" : ""}`} style={{ border: 'none', display: 'none' }}>
+            <Link to={`/${username ? username : ''}/cart`} className={`btn btn-outline-success my-2 my-sm-0 mr-4 text-white ${token ? "d-inline-block" : ""}`} style={{ border: 'none', display: 'none' }}>
               <i className="fas fa-cart-plus"></i>
               <span className="badge badge-danger" style={{ top: '-10px' }}>{totalItem}</span>
               <span className="sr-only">unread messages</span>
@@ -48,7 +50,7 @@ class Navigation extends Component {
                 <i className="fas fa-user"></i>
               </div>
               <div className="dropdown-menu" style={{ left: 'auto', right: 0 }} aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="/">Profile</a>
+                <Link to={`/${username ? username : ''}/profile`} className="dropdown-item">Profile</Link>
                 <div className="dropdown-divider"></div>
                 <button onClick={this.handleLogout} className="dropdown-item" >Logout</button>
               </div>
@@ -62,6 +64,7 @@ class Navigation extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
+    profile: state.ProfileReducer.profile,
     loginStatus: state.AppReducer.loginStatus,
     categories: state.ProductReducer.categories,
     totalItem: state.CartReducer.totalItem

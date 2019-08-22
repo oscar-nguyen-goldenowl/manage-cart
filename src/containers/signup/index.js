@@ -89,7 +89,7 @@ class Signup extends Component {
                 style={{ outline: 'none' }}
               >
                 Signup
-                            </Button>
+              </Button>
             </FormControl>
           </Paper>
         </Grid>
@@ -103,7 +103,7 @@ class Signup extends Component {
           alert(res.data.message);
           return;
         }
-        localStorage.setItem('token', JSON.stringify(res.data.token));
+        localStorage.setItem('token', res.data.token);
         this.props.history.push('/')
       })
       .catch(err => {
