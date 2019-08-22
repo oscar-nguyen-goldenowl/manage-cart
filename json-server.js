@@ -18,7 +18,7 @@ const protectedRoutes = [
 const authenticationMiddleware = (req, res, next) => {
   if (protectedRoutes.includes(req.url)) {
     const token = req.headers['Authorization'] || req.headers['authorization'];
-    console.log('token: ', token);
+
     if (!token) {
       res.json({
         error: true,
@@ -33,14 +33,14 @@ const authenticationMiddleware = (req, res, next) => {
     const accessKey = decoded ? decoded.accessKey : null;
 
     if (!accessKey) {
-      console.log('no access key: ', accessKey);
+
       res.json({
         error: true,
         message: 'Not Authentication',
       });
       return;
     }
-    console.log('accessKey: ', accessKey);
+
     const existedUser = users.find(u => u.accessKey  === accessKey);
 
     if (!existedUser) {

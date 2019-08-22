@@ -1,18 +1,35 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import * as API from '../../api';
+import {
+  changeLoginStatus,
+  getProfileSuccess,
+  getProfileError
+} from '../../actions';
 
 class Navigation extends Component {
+
+  componentDidMount(){
+      // get profile again if Home page refresh after Signin
+      if(localStorage.getItem("token")){
+      API.get('/profile')
+        .then(res => {
+          this.props.getProfileSuccess(res.data.user)
+        })
+        .catch(err => this.props.getProfileSuccess(err))
+    }
+  }
+
   handleLogout = () => {
     localStorage.setItem("token", "");
+    this.props.changeLoginStatus(!this.props.loginStatus);
+    this.props.history.push('/')
   }
   render() {
     const { categories, totalItem, profile } = this.props;
     const token = localStorage.getItem('token') ? localStorage.getItem('token') : "";
     const username = profile ? profile.username : "";
-    console.log("username: ", username);
-    
     
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-info">
@@ -71,5 +88,10 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
+const mapDispatchToProps = {
+  changeLoginStatus,
+  getProfileSuccess,
+  getProfileError,
+}
 
-export default connect(mapStateToProps)(Navigation);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Navigation));

@@ -4,8 +4,6 @@ import Search from '../../components/search';
 import { connect } from 'react-redux';
 import {
   addCart,
-  getProfileSuccess,
-  getProfileError,
   getPathname,
   getCategoriesSuccess,
   getCategoriesError,
@@ -40,19 +38,6 @@ class Home extends Component {
     API.get('/products/count')
       .then(res => this.props.getAmountProduct(res.data))
       .catch(err => err)
-
-    // get profile again if Home page refresh after Signin
-    if(localStorage.getItem("token")){
-      API.get('/profile')
-      .then(res => {
-        this.props.getProfileSuccess(res.data.user)
-        this.setState({
-          username: res.data.user.username,
-          email: res.data.user.email
-        });
-      })
-      .catch(err => this.props.getProfileSuccess(err))
-    }
 
     this.getProductsPagination(this.state.currentPage, this.state.itemPage);
   }
@@ -189,8 +174,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
   addCart,
-  getProfileSuccess,
-  getProfileError,
   getPathname,
   getCategoriesSuccess,
   getCategoriesError,

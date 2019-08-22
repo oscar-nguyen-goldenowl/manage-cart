@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import * as API from '../../api';
 import {
   addCart,
-  getProfileSuccess,
-  getProfileError,
   getPathname,
   getProductDetailSuccess,
   getProductDetailError
@@ -33,19 +31,6 @@ class ProductDetail extends Component {
           .catch(err => err)
       })
       .catch(err => this.props.getProductDetailError(err))
-
-    // get profile again if Home page refresh after Signin
-    if(localStorage.getItem("token")){
-      API.get('/profile')
-      .then(res => {
-        this.props.getProfileSuccess(res.data.user)
-        this.setState({
-          username: res.data.user.username,
-          email: res.data.user.email
-        });
-      })
-      .catch(err => this.props.getProfileSuccess(err))
-    }
   }
 
 
@@ -86,7 +71,6 @@ class ProductDetail extends Component {
       }
     } else {
       alert('Login please !');
-      localStorage.setItem("loginStatus", true);
       this.props.history.push("/signin")
 
       //get pathName current page
@@ -147,8 +131,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
   addCart,
   getPathname,
-  getProfileSuccess,
-  getProfileError,
   getProductDetailSuccess,
   getProductDetailError
 }
