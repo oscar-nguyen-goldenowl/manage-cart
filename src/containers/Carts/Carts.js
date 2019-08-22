@@ -38,7 +38,7 @@ class Carts extends Component {
             <tr>
               <td colSpan={6} style={{ verticalAlign: 'middle' }} className="text-right">
                 <span>Total: {totalPrice}</span>
-                <button onClick={payCart} className="btn btn-info ml-4">Thanh toán</button>
+                <button onClick={payCart} className={`btn btn-info ml-4 ${totalPrice === 0 ? 'disabled' : ''}`}>Thanh toán</button>
               </td>
             </tr>
           </tbody>

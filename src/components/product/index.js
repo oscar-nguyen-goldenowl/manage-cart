@@ -32,7 +32,7 @@ class Product extends Component {
   }
 
   addCart = (product) => {
-    if (localStorage.getItem("user")) {
+    if (localStorage.getItem("token")) {
       const cart = {
         id: product.id,
         product,

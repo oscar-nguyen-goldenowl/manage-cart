@@ -57,7 +57,7 @@ class ProductDetail extends Component {
   }
 
   addCart = (product) => {
-    if (localStorage.getItem("user")) {
+    if (localStorage.getItem("token")) {
       const cart = {
         id: product.id,
         product,
@@ -71,7 +71,6 @@ class ProductDetail extends Component {
       }
     } else {
       alert('Login please !');
-      localStorage.setItem("loginStatus", true);
       this.props.history.push("/signin")
 
       //get pathName current page

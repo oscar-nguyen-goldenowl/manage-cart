@@ -9,3 +9,26 @@
 .active-login{
   display: inline-block !important;
 }
+
+.avatar{
+  width: 150px;
+  height: 150px;
+  background: #e9ecef;
+  border-radius: 20px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  color: #aeafaf;
+  overflow: hidden;
+}
+
+.avatar img{
+  width: 100%;
+  height: 100%;
+}
+
+.disabled{
+  cursor: not-allowed;
+}

@@ -6,6 +6,8 @@ import Carts from './Carts/Carts';
 import ProductDetail from './productDetail';
 import Signin from './signin';
 import Signup from './signup';
+import Profile from './profile';
+import AuthRoute from './AuthRoute';
 
 class Routes extends Component {
   render() {
@@ -20,7 +22,8 @@ class Routes extends Component {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/products/:slug" component={ProductCategory} />
           <Route exact path="/products/:slug/detail" component={ProductDetail} />
-          <Route exact path="/:user/cart" component={Carts} />
+          <AuthRoute exact path="/:user/cart" component={Carts} />
+          <AuthRoute exact path="/:user/profile" component={Profile} />
         </Switch>
       </Fragment>
     );

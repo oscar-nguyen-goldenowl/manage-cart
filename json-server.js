@@ -33,12 +33,14 @@ const authenticationMiddleware = (req, res, next) => {
     const accessKey = decoded ? decoded.accessKey : null;
 
     if (!accessKey) {
+
       res.json({
         error: true,
         message: 'Not Authentication',
       });
       return;
     }
+
     const existedUser = users.find(u => u.accessKey  === accessKey);
 
     if (!existedUser) {
