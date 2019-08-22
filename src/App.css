@@ -21,6 +21,7 @@
   align-items: center;
   font-size: 60px;
   color: #aeafaf;
+  overflow: hidden;
 }
 
 .avatar img{
