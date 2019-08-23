@@ -229,6 +229,7 @@ server.put('/profile', (req, res, next) => {
 })
 
 server.use(router);
+const PORT = 3000 || process.env.PORT;
 server.listen(3000, () => {
   console.log('JSON Server is running')
 });
