@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {
+  changeProfile,
   getProfileSuccess,
   getProfileError
 } from "../../actions";
 import * as API from '../../api';
+import moment from 'moment';
 
 class Profile extends Component {
   constructor(props) {
@@ -38,20 +40,22 @@ class Profile extends Component {
   handleSubmitForm = () => {
     const {id, username, email} = this.props.profile;
     if(this.state.username !== username || this.state.email !== email){
-      // const user = {
-      //   username,
-      //   email,
-      //   createdAt: moment(new Date().toISOString()).unix()
-      // }
-      // API.put(`/users/${id}`, user)
-      //   .then(res => console.log(res))
-      //   .catch(err => console.log(err))
-      console.log("edit profile");
+      const user = {
+        id,
+        username: this.state.username,
+        email: this.state.email,
+      }
+      API.put('/profile', user)
+        .then(res => {          
+          this.props.changeProfile(res.data.user);
+          this.props.history.push(`/${user.username}/profile`);
+        })
+        .catch(err => console.log(err))
     }
   }
   render() {
     const profile = this.props.profile ? this.props.profile : {}; 
-    const {username, email} = this.state;    
+    const {username, email} = this.state; 
   
     return (
       <div className="detail">
@@ -87,6 +91,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = {
+  changeProfile,
   getProfileSuccess,
   getProfileError
 }

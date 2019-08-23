@@ -199,6 +199,35 @@ server.get('/profile', (req, res, next) => {
   });
 });
 
+server.put('/profile', (req, res, next) => {
+  const user = {...req.user};
+  if(!user){
+    res.status(400);
+    res.json({
+      error: true,
+      message: "User is not found..."
+    })
+    return;
+  }
+
+  const {id, username, email} = req.body;
+
+  const data = JSON.parse(fs.readFileSync('./fake-db.json'));
+  const {users} = data;
+
+  const userIndex = users.findIndex(user => user.id === id);
+  if(userIndex){
+    users[userIndex] = {...users[userIndex], username, email};
+    fs.writeFileSync('./fake-db.json', JSON.stringify(data));
+  }
+  
+  delete users[userIndex].accessKey;
+  delete users[userIndex].password;
+  res.json({
+    user: users[userIndex]
+  })
+})
+
 server.use(router);
 server.listen(3000, () => {
   console.log('JSON Server is running')
