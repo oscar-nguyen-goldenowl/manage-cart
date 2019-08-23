@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const staticURL = 'http://localhost:3000';
+// const staticURL = 'http://localhost:3000';
+const staticURL = 'https://oscar-cart.netlify.com/';
 
 export const get = (url, ...args) => axios({method: 'get', url: staticURL + url, headers: {'Authorization': localStorage.getItem('token') ? localStorage.getItem('token') : ""}});
 
