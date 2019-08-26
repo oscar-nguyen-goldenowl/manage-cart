@@ -68,6 +68,8 @@ server.use(authenticationMiddleware);
 // You can use the one used by JSON Server
 server.use(jsonServer.bodyParser);
 
+server.get('/', (req, res, next) => res.send('Hello world!'));
+
 server.post('/auth/sign-up', (req, res) => {
   const {
     username,
