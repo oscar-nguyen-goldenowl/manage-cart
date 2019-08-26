@@ -143,7 +143,7 @@ class Home extends Component {
           <div className="card-deck">
             <div className="row" style={{ width: '100%' }}>
               {
-                products && products.length ?
+                products && products.length &&
                   (
                     products.map((product) => {
                       return <Product
@@ -153,7 +153,6 @@ class Home extends Component {
                         redirectProduct={this.redirectProduct} />
                     })
                   )
-                  : error
               }
             </div>
           </div>
