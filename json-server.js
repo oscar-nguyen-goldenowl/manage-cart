@@ -231,7 +231,7 @@ server.put('/profile', (req, res, next) => {
 })
 
 server.use(router);
-const PORT = 3001;
+const PORT = process.evn.PORT || 3001;
 server.listen(PORT, () => {
   console.log('JSON Server is running')
 });
